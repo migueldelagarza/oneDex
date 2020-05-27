@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./core/core.module').then( module => module.CoreModule) },
+  { path: '', redirectTo: 'pokedex', pathMatch: 'full' },
+  { path: '**', redirectTo: 'pokedex', pathMatch: 'full' },
   { path: 'pokedex', loadChildren: () => import('./modules/pokedex/pokedex.module').then( module => module.PokedexModule) }
 ];
 

@@ -16,21 +16,21 @@ interface Stat {
       <mat-list-item *ngFor="let stat of stats">
         <h4 matLine>{{ stat.stat.name | titlecase}}</h4>
         <p matLine>{{ stat.base_stat }}
-        <div class="bar" [style.width.px]="stat.base_stat"></div>
+        <div class="bar" [style.width.px]="stat.base_stat * 2" [style.background]="color"></div>
       </mat-list-item>
     </mat-list>
   `,
   styles: [`
     .bar {
-      background: #666;
       border-radius: 3px;
       height: 8px;
-      width: 1px;
+      border: solid 1px #333;
     }
   `]
 })
 export class StatsComponent implements OnInit {
   @Input() stats: Stat[];
+  @Input() color: string;
 
   constructor() {
   }

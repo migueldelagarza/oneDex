@@ -32,11 +32,9 @@ import { Observable } from 'rxjs';
       </p>
       <mat-hint>Estadísticas base</mat-hint>
       <mat-divider></mat-divider>
-      <one-stats [stats]="pokemon.stats"></one-stats>
+      <one-stats [stats]="pokemon.stats" [color]="specie.color.name"></one-stats>
     </mat-dialog-content>
-    <mat-dialog-actions align="center">
-      <button mat-button mat-dialog-close>Volver</button>
-    </mat-dialog-actions>
+    <button mat-button mat-dialog-close>Volver</button>
   </section>`,
   styles: [`
     img { filter: drop-shadow(4px 1px 1px #ccc) }
