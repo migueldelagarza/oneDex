@@ -5,7 +5,7 @@ import { PokemonViewComponent } from '../pokemon-view/pokemon-view.component';
 @Component({
   selector: 'one-pokemon-list',
   template: `
-    <mat-list>
+    <mat-list (scroll)="scrollList($event)">
       <h3 matSubheader>Selecciona un pokemon</h3>
       <mat-list-item *ngFor="let pokemon of pokemonList; let i = index" matRipple (click)="openPokemon(i + 1)">
         <h4 matLine>#{{ i + 1 }}</h4>
@@ -30,6 +30,10 @@ export class PokemonListComponent {
       width: '100vw',
       data: pokemonIndex
     })
+  }
+
+  public scrollList(event: any): void {
+    console.log(event)
   }
 
 }

@@ -24,7 +24,7 @@ import { Observable } from 'rxjs';
     }
     mat-card {
       width: calc(100% - 32px);
-      height: calc(100vh - 200px);
+      height: calc(100vh - 256px);
       overflow: auto;
     }
   `]
