@@ -8,10 +8,11 @@ import { ShellComponent } from './components/shell/shell.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent, DrawerComponent, ShellComponent],
+  declarations: [HeaderComponent, DrawerComponent, ShellComponent, FooterComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,
