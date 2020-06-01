@@ -19,3 +19,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .text-warn {
   color: mat-color($oneDex-warn)
 }
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-track {
+  background: rgba($color: white, $alpha: 0.1); 
+}
+::-webkit-scrollbar-thumb {
+  background: mat-color($oneDex-accent);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

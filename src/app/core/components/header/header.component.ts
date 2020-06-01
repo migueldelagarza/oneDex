@@ -4,14 +4,22 @@ import { MatDrawer } from '@angular/material/sidenav';
 @Component({
   selector: 'one-header',
   template: `
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
+    <mat-toolbar>
+      <button mat-button class="mat-elevation-z0"
+        (click)="drawer.toggle()" color="default">
+        <mat-icon>search</mat-icon>
+        <span class="mat-small">BUSCAR</span>
       </button>
-      {{ title }}
+      <span>
+        {{ title }}
+      </span>
     </mat-toolbar>
   `,
-  styles: [``]
+  styles: [`
+    mat-toolbar {
+      background: transparent
+    }
+  `]
 })
 export class HeaderComponent {
   @Input() drawer: MatDrawer;

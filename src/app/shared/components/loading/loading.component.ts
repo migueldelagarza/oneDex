@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'one-loading',
   template: `
-    <p>
-      loading works!
-    </p>
+    <div matDialogTitle>
+      <mat-spinner [diameter]="diameter" color="accent"></mat-spinner>
+      <mat-hint> Cargando...</mat-hint>
+    </div>
   `,
-  styles: [
-  ]
+  styles: [`
+    div {
+      align-items: center;
+      display: flex;
+    }
+  `]
 })
-export class LoadingComponent implements OnInit {
+export class LoadingComponent {
+  diameter: number;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private dialogRef: MatDialogRef<any>) {
+    this.diameter = 24;
   }
-
 }

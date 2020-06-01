@@ -5,16 +5,29 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'one-pokedex-list',
   template: `
+  <section *ngIf="(pokemons$ | async)?.results as pokemons">
+    <div align="center">
+      <mat-hint>{{pokemons.length}} resultados</mat-hint>
+      <h1 align="center" class="mat-h1 text-primary">{{title}}</h1>
+    </div>
     <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{title}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content *ngIf="(pokemons$ | async)?.results as pokemons">
-        <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
-      </mat-card-content>
+      <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
     </mat-card>
+  </section>
   `,
-  styles: [``]
+  styles: [`
+    section {
+      padding: 16px;
+    }
+    mat-hint {
+      margin: 0 auto;
+    }
+    mat-card {
+      width: calc(100% - 32px);
+      height: calc(100vh - 200px);
+      overflow: auto;
+    }
+  `]
 })
 export class PokedexListComponent {
   title: string;

@@ -6,20 +6,15 @@ import { PokemonViewComponent } from '../pokemon-view/pokemon-view.component';
   selector: 'one-pokemon-list',
   template: `
     <mat-list>
+      <h3 matSubheader>Selecciona un pokemon</h3>
       <mat-list-item *ngFor="let pokemon of pokemonList; let i = index" matRipple (click)="openPokemon(i + 1)">
         <h4 matLine>#{{ i + 1 }}</h4>
-        <p matLine>{{ pokemon.name | uppercase }}</p>
+        <mat-hint matLine>{{ pokemon.name | titlecase }}</mat-hint>
         <mat-icon>keyboard_arrow_right</mat-icon>
-        <mat-divider></mat-divider>
       </mat-list-item>
     </mat-list>
   `,
   styles: [`
-    mat-list {
-      max-height: calc(100% - 156px);
-      overflow: auto;
-      width: calc(100% - 16px);
-    }
   `]
 })
 export class PokemonListComponent {
