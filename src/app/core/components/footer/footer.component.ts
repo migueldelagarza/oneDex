@@ -1,25 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { SearchPokemonService } from '../../services/search-pokemon.service';
 
 @Component({
   selector: 'one-footer',
   template: `
     <mat-toolbar>
-
+      <button mat-button (click)="openSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
     </mat-toolbar>
   `,
   styles: [`
     mat-toolbar {
       background: #263238;
+      color: #eee;
       bottom: 0;
+      justify-content: space-around;
       position: fixed;
     }
   `]
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
 
-  constructor() { }
+  constructor(private search: SearchPokemonService) { }
 
-  ngOnInit(): void {
+  public openSearch(): void {
+    this.search.openSearch();
   }
 
 }

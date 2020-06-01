@@ -25,13 +25,11 @@ import { Observable } from 'rxjs';
           </mat-list-item>
         </mat-list>
       </div>
-      <mat-hint>{{specie.genera[4].genus}}</mat-hint>
-      <mat-divider></mat-divider>
+      <h2>{{specie.genera[4].genus}}</h2>
       <p>
         {{ specie.flavor_text_entries[3].flavor_text}}
       </p>
-      <mat-hint>Estadísticas base</mat-hint>
-      <mat-divider></mat-divider>
+      <h2>Estadísticas base</h2>
       <one-stats [stats]="pokemon.stats" [color]="specie.color.name"></one-stats>
     </mat-dialog-content>
     <mat-divider></mat-divider>

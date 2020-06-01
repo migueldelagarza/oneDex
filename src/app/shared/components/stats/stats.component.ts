@@ -15,7 +15,7 @@ interface Stat {
     <mat-list>
       <mat-list-item *ngFor="let stat of stats">
         <h4 matLine>{{ stat.stat.name | titlecase}}</h4>
-        <p matLine>{{ stat.base_stat }}
+        <mat-hint matLine>{{ stat.base_stat }}</mat-hint>
         <div class="bar" [style.width.px]="stat.base_stat * 2" [style.background]="color"></div>
       </mat-list-item>
     </mat-list>

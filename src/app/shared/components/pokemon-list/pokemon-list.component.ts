@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PokemonViewComponent } from '../pokemon-view/pokemon-view.component';
+import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.service';
 
 @Component({
   selector: 'one-pokemon-list',
@@ -20,16 +21,10 @@ import { PokemonViewComponent } from '../pokemon-view/pokemon-view.component';
 export class PokemonListComponent {
   @Input()pokemonList: any;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private detail: DetailPokemonService) { }
 
   public openPokemon(pokemonIndex: number): void {
-    this.dialog.open(PokemonViewComponent, {
-      height: '100vh',
-      maxHeight: 'none',
-      maxWidth: 'none',
-      width: '100vw',
-      data: pokemonIndex
-    })
+    this.detail.openPokemonDetail(pokemonIndex);
   }
 
   public scrollList(event: any): void {
