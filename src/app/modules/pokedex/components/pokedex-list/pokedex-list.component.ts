@@ -10,9 +10,7 @@ import { Observable } from 'rxjs';
       <mat-hint>{{pokemons.length}} resultados</mat-hint>
       <h1 align="center" class="mat-h1 text-primary">{{title}}</h1>
     </div>
-    <mat-card>
-      <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
-    </mat-card>
+    <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
   </section>
   `,
   styles: [`
@@ -21,11 +19,6 @@ import { Observable } from 'rxjs';
     }
     mat-hint {
       margin: 0 auto;
-    }
-    mat-card {
-      width: calc(100% - 32px);
-      height: calc(100vh - 256px);
-      overflow: auto;
     }
   `]
 })
