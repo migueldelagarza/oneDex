@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DetailPokemonService } from '../../services/detail-pokemon.service';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'one-search-pokemon',
@@ -18,13 +19,16 @@ import { FormControl, Validators } from '@angular/forms';
 export class SearchPokemonComponent {
   index: FormControl;
 
-  constructor(private detailPokemon: DetailPokemonService) {
+  constructor(
+    private dialogRef: MatDialogRef<SearchPokemonComponent>,
+    private detailPokemon: DetailPokemonService) {
     const { nullValidator, min } = Validators;
     this.index = new FormControl('1', nullValidator);
   }
 
   public openDetail(): void {
     this.detailPokemon.openPokemonDetail(this.index.value);
+    this.dialogRef.close();
   }
 
 }
