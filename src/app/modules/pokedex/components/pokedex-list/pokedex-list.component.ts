@@ -29,7 +29,7 @@ export class PokedexListComponent {
   constructor(
     private pokeAPI: PokeAPIService
   ) {
-    this.title = 'Dex Nacional';
+    this.title = 'PokeDex Nacional';
     this.pokemons$ = pokeAPI.pokemons;
   }
 }
