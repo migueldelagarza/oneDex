@@ -7,8 +7,8 @@ import { MatDrawer } from '@angular/material/sidenav';
     <mat-toolbar>
       <button mat-button class="mat-elevation-z0"
         (click)="drawer.toggle()" color="default">
-        <mat-icon>search</mat-icon>
-        <span class="mat-small">BUSCAR</span>
+        <mat-icon></mat-icon>
+        <span class="mat-small"></span>
       </button>
       <span>
         {{ title }}
