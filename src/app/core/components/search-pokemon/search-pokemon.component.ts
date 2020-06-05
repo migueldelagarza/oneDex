@@ -6,6 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'one-search-pokemon',
   template: `
+    <h2 mat-dialog-title>Búsqueda</h2>
     <mat-form-field color="accent">
       <mat-label>Por número</mat-label>
       <input matInput type="number" min="1" max="271" [formControl]="index" required>
