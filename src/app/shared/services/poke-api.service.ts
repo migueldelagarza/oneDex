@@ -19,7 +19,6 @@ export class PokeAPIService {
     this.url = 'https://pokeapi.co/api/v2/pokemon/';
     this.specieUrl = 'https://pokeapi.co/api/v2/pokemon-species/';
     this.pokemons$ = new Subject();
-    this.loadPokemon(21);
   }
 
   get pokemons(): Observable<PokemonReference[]> {

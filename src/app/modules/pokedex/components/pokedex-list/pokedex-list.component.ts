@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PokeAPIService } from 'src/app/shared/services/poke-api.service';
 import { Observable } from 'rxjs';
 
@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
     }
   `]
 })
-export class PokedexListComponent {
+export class PokedexListComponent implements OnInit {
   title: string;
   pokemons$: Observable<any>;
 
@@ -31,5 +31,9 @@ export class PokedexListComponent {
   ) {
     this.title = 'PokeDex Nacional';
     this.pokemons$ = pokeAPI.pokemons;
+  }
+
+  ngOnInit(): void {
+    this.pokeAPI.loadPokemon(21);
   }
 }
