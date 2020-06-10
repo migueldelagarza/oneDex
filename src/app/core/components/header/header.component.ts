@@ -8,9 +8,8 @@ import { MatDrawer } from '@angular/material/sidenav';
       <span>
         {{ title }}
       </span>
-      <button mat-button class="mat-elevation-z0"
-        (click)="drawer.toggle()" color="default">
-        <mat-icon></mat-icon>
+      <button mat-icon-button class="mat-elevation-z0">
+        <mat-icon>more_vert</mat-icon>
         <span class="mat-small"></span>
       </button>
     </mat-toolbar>

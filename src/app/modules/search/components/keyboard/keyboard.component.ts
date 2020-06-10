@@ -7,13 +7,11 @@ import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.servi
   template: `
     <section align="center">
       <p class="mat-display-1" align="center">#{{pokemonId}}</p>
-      <mat-divider></mat-divider>
       <div class="keyboard">
-        <button type="button" mat-button *ngFor="let key of keys" (click)="addDigit(key)">
+        <button type="button" mat-stroked-button *ngFor="let key of keys" (click)="addDigit(key)">
           {{key}}
         </button>
       </div>
-      <mat-divider></mat-divider>
       <button type="button" mat-button (click)="resetId()">
         BORRAR
       </button>
@@ -29,11 +27,12 @@ import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.servi
       flex-wrap: wrap;
       justify-content: center;
       margin: auto;
-      max-width: 300px;
+      max-width: 400px;
     }
     .keyboard button {
       font-size: 24px;
-      width: 33.33%;
+      padding: 16px;
+      width: 33.33%
     }
   `]
 })

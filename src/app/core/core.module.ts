@@ -13,9 +13,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SearchPokemonComponent } from './components/search-pokemon/search-pokemon.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 
-
 @NgModule({
-  declarations: [HeaderComponent, DrawerComponent, ShellComponent, FooterComponent, SearchPokemonComponent],
+  declarations: [
+    HeaderComponent,
+    DrawerComponent,
+    ShellComponent,
+    FooterComponent,
+    SearchPokemonComponent,
+  ],
   imports: [
     CommonModule,
     CoreRoutingModule,

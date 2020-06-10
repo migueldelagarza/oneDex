@@ -21,7 +21,7 @@ import { PokeAPIService } from '../../services/poke-api.service';
       width: calc(100% - 32px);
     }
     mat-list {
-      height: calc(100vh - 300px);
+      height: calc(100vh - 316px);
       overflow: auto;
       padding: 0;
       scroll-snap-type: y mandatory;

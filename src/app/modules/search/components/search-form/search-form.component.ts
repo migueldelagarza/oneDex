@@ -16,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
       justify-content: center;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - 64px);
+      height: calc(100vh - 128px);
     }
   `]
 })
