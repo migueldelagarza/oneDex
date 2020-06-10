@@ -6,14 +6,20 @@ import { MaterialModule } from './material/material.module';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonViewComponent } from './components/pokemon-view/pokemon-view.component';
 import { StatsComponent } from './components/stats/stats.component';
-
-
+import { TranslateEsPipe } from './pipes/translate-es.pipe';
 
 @NgModule({
-  declarations: [LoadingComponent, AlertingComponent, PokemonListComponent, PokemonViewComponent, StatsComponent],
+  declarations: [
+    LoadingComponent,
+    AlertingComponent,
+    PokemonListComponent,
+    PokemonViewComponent,
+    StatsComponent,
+    TranslateEsPipe
+  ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports: [
     MaterialModule,

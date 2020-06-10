@@ -25,9 +25,9 @@ import { Observable } from 'rxjs';
           </mat-list-item>
         </mat-list>
       </div>
-      <h2>{{specie.genera[4].genus}}</h2>
+      <h2>{{ (specie.genera | translateEs)[0].genus }}</h2>
       <p>
-        {{ specie.flavor_text_entries[3].flavor_text}}
+        {{ (specie.flavor_text_entries | translateEs)[0].flavor_text }}
       </p>
       <h2>Estadísticas base</h2>
       <one-stats [stats]="pokemon.stats" [color]="specie.color.name"></one-stats>
