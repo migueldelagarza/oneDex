@@ -1,5 +1,6 @@
 {
   "name": "oneDex",
+  "version": "0.2.1",
   "short_name": "oneDex",
   "theme_color": "#f44336",
   "background_color": "#fafafa",
