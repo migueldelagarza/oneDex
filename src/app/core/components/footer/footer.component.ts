@@ -10,20 +10,20 @@ interface Link {
 @Component({
   selector: 'one-footer',
   template: `
-    <mat-toolbar>
-      <a mat-button *ngFor="let link of links" [routerLink]="link.route">
+    <footer mat-tab-nav-bar mat-align-tabs="center" headerPosition="below">
+      <a mat-tab-link *ngFor="let link of links" [routerLink]="link.route"
+        routerLinkActive #linkActive="routerLinkActive"
+        [active]="linkActive.isActive">
         <mat-icon>{{link.icon}}</mat-icon>
         <small>{{link.name}}</small>
       </a>
-    </mat-toolbar>
+    </footer>
   `,
   styles: [`
-    mat-toolbar {
-      background: #263238;
-      color: #eee;
+    footer {
       bottom: 0;
-      justify-content: space-around;
       position: fixed;
+      width: 100%;
     }
   `]
 })
