@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   <section *ngIf="(pokemons$ | async)?.results as pokemons">
     <div align="center">
       <mat-hint>{{pokemons.length}} resultados</mat-hint>
-      <h1 align="center" class="mat-h1 text-primary">{{title}}</h1>
+      <h1 class="mat-h1 text-primary">{{title}}</h1>
     </div>
     <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
   </section>
