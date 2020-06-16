@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageData } from '@constants/pages';
 
 @Component({
   selector: 'one-favorite-list',
@@ -17,8 +18,9 @@ export class FavoriteListComponent implements OnInit {
   subtitle: string;
 
   constructor() {
-    this.title = 'Favoritos';
-    this.subtitle = 'Tu lista personalizada';
+    const { title, subtitle } = PageData.FAVORITES_PAGE;
+    this.title = title;
+    this.subtitle = subtitle;
   }
 
   ngOnInit(): void {

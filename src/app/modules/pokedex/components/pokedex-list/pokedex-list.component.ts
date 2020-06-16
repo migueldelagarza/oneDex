@@ -1,39 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { PokeAPIService } from 'src/app/shared/services/poke-api.service';
+import { PageData } from '@constants/pages';
 import { Observable } from 'rxjs';
+import { PokeAPIService } from '@services/poke-api.service';
+import { PageContent } from '@models/page';
 
 @Component({
   selector: 'one-pokedex-list',
   template: `
   <section *ngIf="(pokemons$ | async)?.results as pokemons">
     <div align="center">
-      <mat-hint>{{pokemons.length}} resultados</mat-hint>
-      <h1 class="mat-h1 text-primary">{{title}}</h1>
+      <mat-hint>{{pokemons.length}} {{page.subtitle}}</mat-hint>
+      <h1 class="mat-h1 text-primary">{{page.title}}</h1>
     </div>
     <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
   </section>
-  `,
-  styles: [`
-    section {
-      padding: 16px;
-    }
-    mat-hint {
-      margin: 0 auto;
-    }
-  `]
+  `
 })
 export class PokedexListComponent implements OnInit {
-  title: string;
+  page: PageContent;
   pokemons$: Observable<any>;
-
-  constructor(
-    private pokeAPI: PokeAPIService
-  ) {
-    this.title = 'PokeDex Nacional';
-    this.pokemons$ = pokeAPI.pokemons;
+  
+  constructor(private pokeAPI: PokeAPIService) {
+    this.pokemons$ = this.pokeAPI.pokemons;
   }
-
+  
   ngOnInit(): void {
     this.pokeAPI.loadPokemon(21);
+    this.page = PageData.POKEDEX_PAGE;
   }
 }

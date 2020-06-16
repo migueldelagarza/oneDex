@@ -1,3 +1,3 @@
 export interface Pokemon {
-  name
+  name: string;
 }

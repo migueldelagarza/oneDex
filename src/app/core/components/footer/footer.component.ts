@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
 import { SearchPokemonService } from '../../services/search-pokemon.service';
-
-interface Link {
-  name: string;
-  icon: string;
-  route: string;
-}
+import { PageData } from '@constants/pages';
+import { PageContent } from '@models/page';
 
 @Component({
   selector: 'one-footer',
   template: `
-    <footer mat-tab-nav-bar mat-align-tabs="center" headerPosition="below">
+    <footer mat-tab-nav-bar mat-align-tabs="center" backgroundColor="default">
       <a mat-tab-link *ngFor="let link of links" [routerLink]="link.route"
         routerLinkActive #linkActive="routerLinkActive"
         [active]="linkActive.isActive">
@@ -28,14 +24,10 @@ interface Link {
   `]
 })
 export class FooterComponent {
-  links: Link[];
+  links: PageContent[];
 
   constructor(private search: SearchPokemonService) {
-    this.links = [
-      { name: 'BUSCAR', icon: 'search', route: 'buscar' },
-      { name: 'FAVORITOS', icon: 'favorite_border', route: 'favoritos' },
-      { name: 'LISTA', icon: 'list', route: '/pokedex' },
-    ]
+    this.links = Object.values(PageData);
   }
 
   public openSearch(): void {

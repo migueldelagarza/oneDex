@@ -5,8 +5,8 @@ import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.servi
 @Component({
   selector: 'one-keyboard',
   template: `
-    <section align="center">
-      <p class="mat-display-1" align="center">#{{pokemonId}}</p>
+    <div align="center">
+      <p class="mat-display-2" align="center">#{{pokemonId}}</p>
       <div class="keyboard">
         <button type="button" mat-stroked-button *ngFor="let key of keys" (click)="addDigit(key)">
           {{key}}
@@ -19,7 +19,7 @@ import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.servi
       <button type="button" mat-button color="accent" (click)="searchPokemon()">
         BUSCAR
       </button>
-    </section>
+    </div>
   `,
   styles: [`
     .keyboard {

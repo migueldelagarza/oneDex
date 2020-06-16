@@ -12,6 +12,7 @@ interface Stat {
 @Component({
   selector: 'one-stats',
   template: `
+    <h2>Estadísticas base</h2>
     <mat-list>
       <mat-list-item *ngFor="let stat of stats">
         <h4 matLine>{{ stat.stat.name | titlecase}}</h4>

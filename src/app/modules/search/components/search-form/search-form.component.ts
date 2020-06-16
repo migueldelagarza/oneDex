@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { PageData } from '@constants/pages';
+import { PageContent } from '@models/page';
 
 @Component({
   selector: 'one-search-form',
   template: `
     <section>
       <div align="center">
-        <mat-hint>{{subtitle}}</mat-hint>
-        <h1 class="mat-h1 text-primary">{{title}}</h1>
+        <mat-hint>{{page.subtitle}}</mat-hint>
+        <h1 class="mat-h1 text-primary">{{page.title}}</h1>
       </div>
       <one-keyboard></one-keyboard>
     </section>
@@ -20,16 +22,6 @@ import { Component, OnInit } from '@angular/core';
     }
   `]
 })
-export class SearchFormComponent implements OnInit {
-  title: string;
-  subtitle: string;
-
-  constructor() {
-    this.title = 'Pokedex nacional';
-    this.subtitle = 'Búsqueda por número'
-  }
-
-  ngOnInit(): void {
-  }
-
+export class SearchFormComponent {
+  page: PageContent = PageData.SEARCH_PAGE;
 }
