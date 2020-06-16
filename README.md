@@ -12,14 +12,16 @@ Esta aplicación sirve para visualizar datos de pokemon a través de la PokeAPI.
 
 ## Funciones
 
-- Ver lista de pokemon
+- Consulta númerica de pokémon
+- Ver lista de pokémon
   - Número
   - Nombre
-- Ver detalle individual del pokemon seleccionado
+- Ver detalle individual del pokémon seleccionado
   - Nombre
   - Imagen
   - Peso
   - Altura
-  - Leyenda en pokedex
+  - Leyenda en pokédex
   - Estadísticas base (ataque, defensa, velocidad, ataque especial, defensa especial, puntos vitales)
 - Ver detalle individual del pokemon buscado por número
+- Guardar lista de pokémones vistos recientemente
