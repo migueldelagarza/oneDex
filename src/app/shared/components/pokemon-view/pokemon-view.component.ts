@@ -12,13 +12,15 @@ import { Observable } from 'rxjs';
       </button>
       Detalle
       <button mat-icon-button>
-        <mat-icon>favorite_border</mat-icon>
+        <mat-icon></mat-icon>
       </button>
     </h1>
-    <mat-divider></mat-divider>
-    <h2>
-      #{{pokemon.id}} {{pokemon.name | uppercase}}
-    </h2>
+    <div align="start">
+      <mat-hint class="mat-small">{{ (specie.genera | translateEs)[0].genus }}</mat-hint>
+      <h2 class="mat-h1 text-accent">
+        #{{pokemon.id}} {{pokemon.name | titlecase}}
+      </h2>
+    </div>
     <div class="align-items-center pokemon">
       <div>
         <img [src]="pokemon.sprites.front_default">
@@ -34,8 +36,9 @@ import { Observable } from 'rxjs';
         </mat-list-item>
       </mat-list>
     </div>
+    <mat-divider></mat-divider>
     <mat-dialog-content>
-      <h2>{{ (specie.genera | translateEs)[0].genus }}</h2>
+      <h2 class="mat-h2 text-accent">Descripción</h2>
       <p>
         {{ (specie.flavor_text_entries | translateEs)[0].flavor_text }}
       </p>
@@ -44,6 +47,7 @@ import { Observable } from 'rxjs';
   `,
   styles: [`
     .mat-dialog-title { align-items: center; display: flex; justify-content: space-between; }
+    mat-dialog-content { height: calc(100% - 300px); }
     img { filter: drop-shadow(4px 1px 1px #ccc) }
     .pokemon { justify-content: center }
 
