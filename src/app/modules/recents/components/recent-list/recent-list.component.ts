@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RecentsService } from '@services/recents.service';
-import { Observable } from 'rxjs';
 import { PageData } from '@constants/pages';
 import { PageContent } from '@models/page';
 
@@ -10,7 +9,7 @@ import { PageContent } from '@models/page';
     <section align="center">
       <mat-hint>{{page.subtitle}}</mat-hint>
       <h1 class="mat-h1 text-primary">{{page.title}}</h1>
-      
+      <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
     <section>
   `,
   styles: [
@@ -22,7 +21,11 @@ export class RecentListComponent {
 
   constructor(private recents: RecentsService) {
     this.page = PageData.RECENTS_PAGE;
-    this.pokemons = recents.recents;
-    console.log(recents.recents)
+    this.pokemons = recents.recents.map( data => {
+      return {
+        id: data.pokemon.id,
+        name: data.pokemon.name
+      }
+    });
   }
 }

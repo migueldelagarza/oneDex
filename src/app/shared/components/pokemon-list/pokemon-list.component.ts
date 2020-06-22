@@ -1,4 +1,4 @@
-import { Component, Input, HostListener } from '@angular/core';
+import { Component, Input, HostListener, OnInit } from '@angular/core';
 import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.service';
 import { PokeAPIService } from '../../services/poke-api.service';
 
@@ -8,8 +8,8 @@ import { PokeAPIService } from '../../services/poke-api.service';
   <mat-card>
     <h3 matSubheader>Selecciona un pokemon</h3>
     <mat-list (scroll)="scrollList($event.srcElement)">
-      <mat-list-item *ngFor="let pokemon of pokemonList; let i = index" matRipple (click)="openPokemon(i + 1)">
-        <h4 matLine>#{{ i + 1 }}</h4>
+      <mat-list-item *ngFor="let pokemon of pokemonList" matRipple (click)="openPokemon(pokemon.id)">
+        <h4 matLine>#{{pokemon.id}}</h4>
         <mat-hint matLine>{{ pokemon.name | titlecase }}</mat-hint>
         <mat-icon>keyboard_arrow_right</mat-icon>
       </mat-list-item>
@@ -33,8 +33,8 @@ import { PokeAPIService } from '../../services/poke-api.service';
     }
   `]
 })
-export class PokemonListComponent {
-  @Input()pokemonList: any;
+export class PokemonListComponent implements OnInit{
+  @Input()pokemonList: any[];
   pokemonTop: number;
   
   constructor(
@@ -42,9 +42,22 @@ export class PokemonListComponent {
     private pokeApi: PokeAPIService) {
       this.pokemonTop = 1;
     }
-  
+    
+  ngOnInit(): void {
+    this.setIndexes();
+  }
+
+  private setIndexes(): void {
+    let i = 1;
+    this.pokemonList.forEach( pokemon => {
+      pokemon.id = pokemon.id ? pokemon.id : i;
+      i++;
+    })
+  }
+
   public openPokemon(pokemonIndex: number): void {
     this.detail.openPokemonDetail(pokemonIndex);
+    this.setIndexes();
   }
   
   @HostListener('scroll', ['$event'])

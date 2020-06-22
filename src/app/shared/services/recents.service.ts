@@ -11,6 +11,13 @@ export class RecentsService {
   }
 
   public addRecentPokemon( pokemon: any, specie: any ) {
-    this.recents.push({pokemon, specie});
+    const index = this.recents.findIndex( data => {
+      return data.pokemon.id === pokemon.id;
+    });
+    console.log(index)
+    if (index >= 0) {
+      this.recents.splice(index, 1);
+    }
+    this.recents.unshift({pokemon, specie});
   }
 }
