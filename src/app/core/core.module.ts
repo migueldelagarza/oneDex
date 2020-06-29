@@ -3,15 +3,14 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DrawerComponent } from './components/drawer/drawer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { ShellComponent } from './components/shell/shell.component';
-import { CoreRoutingModule } from './core-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { DrawerComponent } from './components/drawer.component';
+import { HeaderComponent } from './components/header.component';
+import { ShellComponent } from './components/shell.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { FooterComponent } from './components/footer/footer.component';
-import { SearchPokemonComponent } from './components/search-pokemon/search-pokemon.component';
+import { FooterComponent } from './components/footer.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { MaterialModule } from '../shared/material/material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -19,13 +18,12 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     DrawerComponent,
     ShellComponent,
     FooterComponent,
-    SearchPokemonComponent,
   ],
   imports: [
     CommonModule,
-    CoreRoutingModule,
-    SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule
   ],
   exports: [ShellComponent],
   providers: [

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchPokemonService } from '../services/search-pokemon.service';
+import { SearchPokemonService } from '@services/search-pokemon.service';
 import { PageData } from '@constants/pages';
 import { PageContent } from '@models/page';
 
@@ -7,7 +7,7 @@ import { PageContent } from '@models/page';
   selector: 'one-footer',
   template: `
     <footer mat-tab-nav-bar mat-align-tabs="center" backgroundColor="default">
-      <a mat-tab-link *ngFor="let link of links" [routerLink]="link.route"
+      <a mat-tab-link *ngFor="let link of links"
         routerLinkActive #linkActive="routerLinkActive"
         [active]="linkActive.isActive">
         <mat-icon>{{link.icon}}</mat-icon>

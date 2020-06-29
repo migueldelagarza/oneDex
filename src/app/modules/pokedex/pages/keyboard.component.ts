@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchPokemonService } from 'src/app/core/services/search-pokemon.service';
-import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.service';
+import { Component } from '@angular/core';
+import { DetailPokemonService } from '@services/detail-pokemon.service';
 
 @Component({
   selector: 'one-keyboard',

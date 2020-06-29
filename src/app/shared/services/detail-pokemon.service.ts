@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PokemonViewComponent } from 'src/app/shared/components/pokemon-view/pokemon-view.component';
 import { PokeAPIService } from '@services/poke-api.service';
 import { Observable } from 'rxjs';
 
@@ -19,7 +18,7 @@ export class DetailPokemonService {
     index = index > 721 ? 721 : index;
     this.getDataPokemon(index).subscribe( pokemon => {
       this.getDataSpecie(index).subscribe( specie => {
-        this.dialog.open(PokemonViewComponent, {
+        this.dialog.open(null, {
           height: '100vh',
           maxHeight: 'none',
           maxWidth: 'none',

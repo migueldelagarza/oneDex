@@ -1,6 +1,6 @@
 import { Component, Input, HostListener, OnInit } from '@angular/core';
-import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.service';
-import { PokeAPIService } from '../../services/poke-api.service';
+import { DetailPokemonService } from '@services/detail-pokemon.service';
+import { PokeAPIService } from '@services/poke-api.service';
 
 @Component({
   selector: 'one-pokemon-list',
