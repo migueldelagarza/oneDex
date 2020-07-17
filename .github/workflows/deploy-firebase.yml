@@ -30,4 +30,4 @@ jobs:
           npm i
           npm run build:prod
       - name: deploy firebase
-        run: firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
