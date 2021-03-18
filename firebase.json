@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist/oneDex",
+    "site": "dev-onedex",
     "ignore": [
       "firebase.json",
       "**/.*",
