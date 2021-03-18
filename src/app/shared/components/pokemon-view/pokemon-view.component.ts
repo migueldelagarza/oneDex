@@ -12,7 +12,7 @@ import { RecentsService } from '@services/recents.service';
         #{{pokemon.id}} {{pokemon.name | titlecase}}
       </h2>
     </div>
-    <button mat-icon-button (click)="setRecentPokemon(pokemon, specie)">
+    <button mat-icon-button (click)="dismiss()">
       <mat-icon>close</mat-icon>
     </button>
     </h1>
@@ -56,16 +56,18 @@ export class PokemonViewComponent {
   constructor(
     public sheetRef: MatBottomSheetRef<PokemonViewComponent>,
     @Inject(MAT_BOTTOM_SHEET_DATA) public pokemonData: any,
-    private recents: RecentsService
+    private service: RecentsService
   ) {
     this.title = 'Detalle de pokemon';
     const { pokemon, specie } = pokemonData;
     this.pokemon = pokemon;
     this.specie = specie;
+    sheetRef.afterDismissed().toPromise().then( () => {
+      this.service.addRecentPokemon(pokemon, specie);
+    })
   }
-  
-  public setRecentPokemon(pokemon: any, specie: any): void {
+
+  public dismiss(): void {
     this.sheetRef.dismiss();
-    this.recents.addRecentPokemon(pokemon, specie);
   }
 }
