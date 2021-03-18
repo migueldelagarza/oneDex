@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { PokemonViewComponent } from 'src/app/shared/components/pokemon-view/pokemon-view.component';
 import { PokeAPIService } from '@services/poke-api.service';
 import { Observable } from 'rxjs';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class DetailPokemonService {
 
   constructor(
-    private dialog: MatDialog,
+    private sheet: MatBottomSheet,
     private pokeAPI: PokeAPIService
   ) { }
 
@@ -19,11 +19,7 @@ export class DetailPokemonService {
     index = index > 721 ? 721 : index;
     this.getDataPokemon(index).subscribe( pokemon => {
       this.getDataSpecie(index).subscribe( specie => {
-        this.dialog.open(PokemonViewComponent, {
-          height: '100vh',
-          maxHeight: 'none',
-          maxWidth: 'none',
-          width: '100vw',
+        this.sheet.open(PokemonViewComponent, {
           data: { pokemon, specie }
         })
       });
