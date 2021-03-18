@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchPokemonService } from 'src/app/core/services/search-pokemon.service';
+import { Component } from '@angular/core';
 import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.service';
 
 @Component({
@@ -8,20 +7,18 @@ import { DetailPokemonService } from 'src/app/core/services/detail-pokemon.servi
     <div align="center">
       <p class="mat-display-2" align="center">#{{pokemonId}}</p>
       <div class="keyboard">
-        <button type="button" mat-stroked-button class="mat-elevation-z1" *ngFor="let key of keys" (click)="addDigit(key)">
+        <button type="button" mat-raised-button *ngFor="let key of keys" (click)="addDigit(key)">
           {{key}}
         </button>
-        <button type="button" mat-button color="warn" class="mat-elevation-z1" (click)="resetId()">
-          <small class="mat-small">
-            BORRAR
-          </small>
+        <button type="button" mat-raised-button (click)="resetId()">
+          C
         </button>
         <button mat-stroked-button class="mat-elevation-z1" (click)="addDigit(0)">0</button>
         <button mat-button  class="mat-elevation-z1" (click)="eraseLast(pokemonId)">
           <mat-icon>backspace</mat-icon>
         </button>
       </div>
-      <button type="button" mat-button color="accent" (click)="searchPokemon()">
+      <button type="button" mat-raised-button color="accent" (click)="searchPokemon()">
         VER DETALLE
       </button>
     </div>
@@ -62,7 +59,9 @@ export class KeyboardComponent {
   }
 
   public eraseLast(id: string): void {
-    this.pokemonId = id.slice(0, -1);
+    if (this.pokemonId !== '0') {
+      this.pokemonId = id.slice(0, -1);
+    }
   }
 
   public resetId(): void {
@@ -70,7 +69,9 @@ export class KeyboardComponent {
   }
 
   public searchPokemon(): void {
-    const index = parseInt(this.pokemonId);
-    this.detail.openPokemonDetail(index);
+    if (this.pokemonId && this.pokemonId !== '0') {
+      const index = parseInt(this.pokemonId);
+      this.detail.openPokemonDetail(index);
+    }
   }
 }
