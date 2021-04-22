@@ -8,9 +8,7 @@ interface PokemonReference {
   url: string;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class PokeAPIService {
   private pokemons$: Subject<PokemonReference[]>;
 
@@ -22,12 +20,12 @@ export class PokeAPIService {
     return this.pokemons$.asObservable();
   }
 
-  loadPokemon(indexMax: number): void {
+  public loadPokemon(indexMax: number): void {
     indexMax = indexMax < 722 ? indexMax : 721;
     this.http.get<PokemonReference[]>(UrlApi.API_URL + 'pokemon?limit=' + indexMax)
-    .subscribe( response => {
-      this.pokemons$.next(response)
-    });
+      .subscribe(response => {
+        this.pokemons$.next(response)
+      });
   }
 
   public getPokemonByIndex(index: number): Observable<any> {

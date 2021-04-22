@@ -48,10 +48,8 @@ export class PokemonListComponent implements OnInit{
   }
 
   private setIndexes(): void {
-    let i = 1;
-    this.pokemonList.forEach( pokemon => {
-      pokemon.id = pokemon.id ? pokemon.id : i;
-      i++;
+    this.pokemonList.forEach( (pokemon: any, index) => {
+      pokemon.id = pokemon.id | index;
     })
   }
 
