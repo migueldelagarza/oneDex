@@ -15,6 +15,6 @@ export class LoadingService {
   }
 
   public hide(): void {
-    this.dialog.getDialogById(this.idLoading).close();
+    this.dialog.closeAll();
   }
 }

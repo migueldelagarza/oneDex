@@ -1,26 +1,21 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { RecentsService } from '@services/recents.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'one-pokemon-view',
   template: `
     <h1 mat-dialog-title>
-      <button mat-icon-button mat-dialog-close (click)="setRecentPokemon(pokemon, specie)">
-        <mat-icon>keyboard_arrow_left</mat-icon>
-      </button>
-      Detalle
-      <button mat-icon-button>
-        <mat-icon></mat-icon>
-      </button>
-    </h1>
     <div align="start">
       <mat-hint class="mat-small">{{ (specie.genera | translateEs)[0].genus }}</mat-hint>
       <h2 class="mat-h1 text-accent">
         #{{pokemon.id}} {{pokemon.name | titlecase}}
       </h2>
     </div>
+    <button mat-icon-button (click)="dismiss()">
+      <mat-icon>close</mat-icon>
+    </button>
+    </h1>
     <div class="align-items-center pokemon">
       <div>
         <img [src]="pokemon.sprites.front_default">
@@ -50,7 +45,6 @@ import { Observable } from 'rxjs';
     mat-dialog-content { height: calc(100% - 300px); }
     img { filter: drop-shadow(4px 1px 1px #ccc) }
     .pokemon { justify-content: center }
-
   `]
 })
 export class PokemonViewComponent {
@@ -59,17 +53,20 @@ export class PokemonViewComponent {
   specie: any;
 
   constructor(
-    public dialogRef: MatDialogRef<PokemonViewComponent>,
-    @Inject(MAT_DIALOG_DATA) public pokemonData: any,
-    private recents: RecentsService
+    public sheetRef: MatBottomSheetRef<PokemonViewComponent>,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public pokemonData: any,
+    private service: RecentsService
   ) {
     this.title = 'Detalle de pokemon';
     const { pokemon, specie } = pokemonData;
     this.pokemon = pokemon;
     this.specie = specie;
+    sheetRef.afterDismissed().toPromise().then( () => {
+      this.service.addRecentPokemon(pokemon, specie);
+    })
   }
-  
-  public setRecentPokemon(pokemon: any, specie: any): void {
-    this.recents.addRecentPokemon(pokemon, specie);
+
+  public dismiss(): void {
+    this.sheetRef.dismiss();
   }
 }

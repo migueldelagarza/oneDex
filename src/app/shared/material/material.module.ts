@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
@@ -25,6 +26,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 const modules: any[] = [
   MatButtonModule,
+  MatBottomSheetModule,
   MatCardModule,
   MatCheckboxModule,
   MatChipsModule,

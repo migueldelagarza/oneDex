@@ -55,7 +55,7 @@ export class KeyboardComponent {
     } else {
       this.pokemonId += digit;
     }
-    if (parseInt(this.pokemonId) > 721) {
+    if (parseInt(this.pokemonId) > 898) {
       this.resetId();
     }
   }

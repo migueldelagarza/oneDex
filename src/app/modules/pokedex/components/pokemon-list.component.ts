@@ -8,8 +8,8 @@ import { PokeAPIService } from '@services/poke-api.service';
   <mat-card>
     <h3 matSubheader>Selecciona un pokemon</h3>
     <mat-list (scroll)="scrollList($event.srcElement)">
-      <mat-list-item *ngFor="let pokemon of pokemonList" matRipple (click)="openPokemon(pokemon.id)">
-        <h4 matLine>#{{pokemon.id}}</h4>
+      <mat-list-item *ngFor="let pokemon of pokemonList; let idx = index" matRipple (click)="openPokemon(idx + 1)">
+        <h4 matLine>#{{idx + 1}}</h4>
         <mat-hint matLine>{{ pokemon.name | titlecase }}</mat-hint>
         <mat-icon>keyboard_arrow_right</mat-icon>
       </mat-list-item>
@@ -33,41 +33,31 @@ import { PokeAPIService } from '@services/poke-api.service';
     }
   `]
 })
-export class PokemonListComponent implements OnInit{
-  @Input()pokemonList: any[];
-  pokemonTop: number;
-  
+export class PokemonListComponent implements OnInit {
+  @Input() pokemonList: any[];
+  lastPokemon: number;
+
   constructor(
     private detail: DetailPokemonService,
     private pokeApi: PokeAPIService) {
-      this.pokemonTop = 1;
-    }
-    
-  ngOnInit(): void {
-    this.setIndexes();
+    this.lastPokemon = 50;
   }
 
-  private setIndexes(): void {
-    let i = 1;
-    this.pokemonList.forEach( pokemon => {
-      pokemon.id = pokemon.id ? pokemon.id : i;
-      i++;
-    })
+  ngOnInit(): void {
   }
+
 
   public openPokemon(pokemonIndex: number): void {
     this.detail.openPokemonDetail(pokemonIndex);
-    this.setIndexes();
   }
-  
+
   @HostListener('scroll', ['$event'])
   public scrollList($event: any): void {
-    const { scrollTop, scrollHeight } = $event;
-    const max: number = (scrollHeight) / 72;
-    const top: number = Math.ceil(scrollTop / 72);
-    if ( this.pokemonTop !== top && top > (max - 10)) {
-      if (max < 721) this.pokeApi.loadPokemon(max + 50);
-      this.pokemonTop = top;
+    const { scrollTop, scrollHeight, offsetHeight } = $event;
+    if (Math.ceil(offsetHeight + scrollTop) == scrollHeight) {
+      this.pokeApi.loadPokemon(this.lastPokemon + 50).then( () => {
+        this.lastPokemon += 50;
+      })
     }
   }
 }
