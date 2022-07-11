@@ -9,7 +9,8 @@ import { PageContent } from '@models/page';
     <footer mat-tab-nav-bar mat-align-tabs="center" backgroundColor="default">
       <a mat-tab-link *ngFor="let link of links"
         routerLinkActive #linkActive="routerLinkActive"
-        [active]="linkActive.isActive">
+        [active]="linkActive.isActive"
+        [routerLink]="link.route">
         <mat-icon>{{link.icon}}</mat-icon>
         <small>{{link.name}}</small>
       </a>
