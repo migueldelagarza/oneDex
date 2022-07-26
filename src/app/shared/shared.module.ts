@@ -1,33 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoadingComponent } from './components/loading/loading.component';
-import { AlertingComponent } from './components/alerting/alerting.component';
+import { LoadingComponent } from './components/loading.component';
+import { AlertingComponent } from './components/alerting.component';
 import { MaterialModule } from './material/material.module';
-import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
-import { PokemonViewComponent } from './components/pokemon-view/pokemon-view.component';
-import { StatsComponent } from './components/stats/stats.component';
 import { TranslateEsPipe } from './pipes/translate-es.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     LoadingComponent,
     AlertingComponent,
-    PokemonListComponent,
-    PokemonViewComponent,
-    StatsComponent,
     TranslateEsPipe
   ],
   imports: [
     CommonModule,
     MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     MaterialModule,
     LoadingComponent,
     AlertingComponent,
-    PokemonListComponent,
-    StatsComponent
+    TranslateEsPipe,
+    ReactiveFormsModule
   ],
-  entryComponents: [PokemonViewComponent]
+  entryComponents: []
 })
 export class SharedModule { }

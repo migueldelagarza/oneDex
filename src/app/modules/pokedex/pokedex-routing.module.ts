@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PokedexListComponent } from './components/pokedex-list/pokedex-list.component';
+import { KeyboardComponent } from './pages/keyboard.component';
+import { PokedexListComponent } from './pages/pokedex-list.component';
+import { RecentListComponent } from './pages/recent-list.component';
 
 
 const routes: Routes = [
-  { path: '', component: PokedexListComponent }
+  { path: '', component: PokedexListComponent },
+  { path: 'teclado', component: KeyboardComponent },
+  { path: 'recientes', component: RecentListComponent }
 ];
 
 @NgModule({
