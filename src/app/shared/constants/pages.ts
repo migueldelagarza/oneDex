@@ -4,7 +4,7 @@ export class PageData {
   public static SEARCH_PAGE: PageContent = {
       name: 'Teclado',
       icon: 'keyboard',
-      route: 'teclado',
+      route: '/pokedex/teclado',
       title: 'Pokédex Nacional',
       subtitle: 'Búsqueda por número'
   };
@@ -12,7 +12,7 @@ export class PageData {
     public static RECENTS_PAGE = {
       name: 'Recientes',
       icon: 'av_timer',
-      route: 'recientes',
+      route: '/pokedex/recientes',
       title: 'Vistos recientemente',
       subtitle: 'Tu historial de consultas'
     }
@@ -20,7 +20,7 @@ export class PageData {
   public static POKEDEX_PAGE = {
     name: 'Lista',
     icon: 'format_list_numbered',
-    route: 'pokedex',
+    route: '/pokedex/',
     title: 'Pokédex Nacional',
     subtitle: 'Mostrando: '
   };

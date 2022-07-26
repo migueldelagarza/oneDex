@@ -25,7 +25,7 @@ export class PokedexListComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.pokeAPI.loadPokemon(21);
+    this.pokeAPI.loadPokemon(50);
     this.page = PageData.POKEDEX_PAGE;
   }
 }

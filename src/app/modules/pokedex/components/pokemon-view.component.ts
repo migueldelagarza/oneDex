@@ -22,12 +22,16 @@ import { RecentsService } from '@services/recents.service';
       </div>
       <mat-list>
         <mat-list-item>
-          <h4 matLine>Peso:</h4>
-          <mat-hint matLine>{{pokemon.weight / 10}}kg</mat-hint>
+          <h4 matLine>
+            Peso:
+            <mat-hint>{{pokemon.weight / 10}}kg</mat-hint>
+          </h4>
         </mat-list-item>
         <mat-list-item>
-          <h4 matLine>Altura:</h4>
-          <mat-hint matLine>{{pokemon.height / 10}}m</mat-hint>
+          <h4>
+            Altura:
+            <mat-hint>{{pokemon.height / 10}}m</mat-hint>
+          </h4>
         </mat-list-item>
       </mat-list>
     </div>
@@ -45,7 +49,6 @@ import { RecentsService } from '@services/recents.service';
     mat-dialog-content { height: calc(100% - 300px); }
     img { filter: drop-shadow(4px 1px 1px #ccc) }
     .pokemon { justify-content: center }
-
   `]
 })
 export class PokemonViewComponent {
@@ -62,7 +65,7 @@ export class PokemonViewComponent {
     const { pokemon, specie } = pokemonData;
     this.pokemon = pokemon;
     this.specie = specie;
-    sheetRef.afterDismissed().toPromise().then( () => {
+    sheetRef.afterDismissed().toPromise().then(() => {
       this.service.addRecentPokemon(pokemon, specie);
     })
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
+import { LoadingComponent } from '@components/loading.component';
 
 @Injectable({
   providedIn: 'root'
