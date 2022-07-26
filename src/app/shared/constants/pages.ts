@@ -22,6 +22,6 @@ export class PageData {
     icon: 'format_list_numbered',
     route: '/pokedex/',
     title: 'Pokédex Nacional',
-    subtitle: 'resultados'
+    subtitle: 'Mostrando: '
   };
 }

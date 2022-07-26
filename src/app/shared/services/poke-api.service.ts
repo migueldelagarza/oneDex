@@ -9,9 +9,7 @@ interface PokemonReference {
   url: string;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class PokeAPIService {
   private pokemons$: Subject<PokemonReference[]>;
 

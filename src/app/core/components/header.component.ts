@@ -25,7 +25,7 @@ export class HeaderComponent {
   title: string;
 
   constructor() {
-    this.title = 'OneDex';
+    this.title = '1Dx';
   }
 
 }

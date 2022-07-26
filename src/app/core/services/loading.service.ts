@@ -11,7 +11,7 @@ export class LoadingService {
   constructor(private dialog: MatDialog) {}
 
   public show(): void {
-    this.idLoading = this.dialog.open(LoadingComponent).id;
+    this.dialog.open(LoadingComponent);
   }
 
   public hide(): void {

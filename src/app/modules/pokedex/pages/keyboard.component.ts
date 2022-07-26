@@ -7,13 +7,11 @@ import { DetailPokemonService } from '@services/detail-pokemon.service';
     <div align="center">
       <p class="mat-display-2" align="center">#{{pokemonId}}</p>
       <div class="keyboard">
-        <button type="button" mat-stroked-button class="mat-elevation-z1" *ngFor="let key of keys" (click)="addDigit(key)">
+        <button type="button" mat-raised-button *ngFor="let key of keys" (click)="addDigit(key)">
           {{key}}
         </button>
-        <button type="button" mat-button color="warn" class="mat-elevation-z1" (click)="resetId()">
-          <small class="mat-small">
-            BORRAR
-          </small>
+        <button type="button" mat-raised-button (click)="resetId()">
+          C
         </button>
         <button mat-stroked-button class="mat-elevation-z1" (click)="addDigit(0)">0</button>
         <button mat-button  class="mat-elevation-z1" (click)="eraseLast(pokemonId)">
@@ -70,7 +68,9 @@ export class KeyboardComponent {
   }
 
   public eraseLast(id: string): void {
-    this.pokemonId = id.slice(0, -1);
+    if (this.pokemonId !== '0') {
+      this.pokemonId = id.slice(0, -1);
+    }
   }
 
   public resetId(): void {
@@ -78,7 +78,9 @@ export class KeyboardComponent {
   }
 
   public searchPokemon(): void {
-    const index = parseInt(this.pokemonId);
-    this.detail.openPokemonDetail(index);
+    if (this.pokemonId && this.pokemonId !== '0') {
+      const index = parseInt(this.pokemonId);
+      this.detail.openPokemonDetail(index);
+    }
   }
 }
