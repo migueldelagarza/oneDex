@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "dev-onedex",
     "public": "dist/oneDex",
     "site": "dev-onedex",
     "ignore": [
