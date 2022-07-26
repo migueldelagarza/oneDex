@@ -6,7 +6,7 @@ import { PageContent } from '@models/page';
 @Component({
   selector: 'one-footer',
   template: `
-    <footer mat-tab-nav-bar mat-align-tabs="center" backgroundColor="default">
+    <footer mat-tab-nav-bar mat-align-tabs="center" headerPosition="below" backgroundColor="primary">
       <a mat-tab-link *ngFor="let link of links"
         routerLinkActive #linkActive="routerLinkActive"
         [active]="linkActive.isActive"
@@ -18,6 +18,8 @@ import { PageContent } from '@models/page';
   `,
   styles: [`
     footer {
+      background: #222;
+      color: #eee;
       bottom: 0;
       position: fixed;
       width: 100%;

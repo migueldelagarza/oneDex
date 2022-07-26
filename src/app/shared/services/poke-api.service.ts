@@ -29,11 +29,11 @@ export class PokeAPIService {
       .pipe(tap(response => this.pokemons$.next(response))).toPromise();
   }
 
-  public getPokemonByIndex(index: number): Observable<any> {
+  public getPokemonByIndex(index: number | string): Observable<any> {
     return this.http.get<any>(UrlApi.API_URL + 'pokemon/' + index)
   }
 
-  public getSpecieByIndex(index: number): Observable<any> {
+  public getSpecieByIndex(index: number | string): Observable<any> {
     return this.http.get<any>(UrlApi.API_URL + 'pokemon-species/' + index)
   }
 }

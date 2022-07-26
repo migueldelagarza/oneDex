@@ -20,7 +20,7 @@ import { DetailPokemonService } from '@services/detail-pokemon.service';
           <mat-icon>backspace</mat-icon>
         </button>
       </div>
-      <button type="button" mat-button color="accent" (click)="searchPokemon()">
+      <button id="searchButton" type="button" mat-flat-button color="accent" (click)="searchPokemon()" *ngIf="isValidDigit">
         VER DETALLE
       </button>
     </div>
@@ -36,7 +36,12 @@ import { DetailPokemonService } from '@services/detail-pokemon.service';
     }
     .keyboard button {
       height: 20%;
-      width: 30%
+      width: 30%;
+      font-size: 20px;
+    }
+    #searchButton {
+      display: block;
+      padding: 0 36px
     }
   `]
 })
@@ -47,6 +52,10 @@ export class KeyboardComponent {
   constructor(private detail: DetailPokemonService) {
     this.pokemonId = '0';
     this.keys = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  }
+
+  get isValidDigit(): boolean {
+    return parseInt(this.pokemonId) > 0;
   }
 
   public addDigit(digit: number): void {

@@ -9,9 +9,11 @@ import { PokeAPIService } from '@services/poke-api.service';
     <h3 matSubheader>Selecciona un pokemon</h3>
     <mat-list (scroll)="scrollList($event.srcElement)">
       <mat-list-item *ngFor="let pokemon of pokemonList; let idx = index" matRipple (click)="openPokemon(idx + 1)">
+        <img mat-list-icon src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{idx + 1}}.png" [alt]="pokemon.name">
         <h4 matLine>#{{idx + 1}}</h4>
         <mat-hint matLine>{{ pokemon.name | titlecase }}</mat-hint>
         <mat-icon>keyboard_arrow_right</mat-icon>
+        <mat-divider mat-line></mat-divider>
       </mat-list-item>
     </mat-list>
   </mat-card>
@@ -29,7 +31,10 @@ import { PokeAPIService } from '@services/poke-api.service';
     }
     mat-list-item {
       scroll-snap-align: start;
-
+    }
+    .mat-list-icon {
+      height: 96px !important;
+      width: 96px !important;
     }
   `]
 })
