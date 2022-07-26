@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - development
+      - developement
 jobs:
   build_app:
     name: build app
