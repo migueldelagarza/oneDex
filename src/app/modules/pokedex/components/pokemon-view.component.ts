@@ -45,7 +45,7 @@ import { RecentsService } from '@services/recents.service';
     </mat-dialog-content>
   `,
   styles: [`
-    .mat-dialog-title { align-items: center; display: flex; justify-content: space-between; }
+    .mat-dialog-title { align-items: center; display: flex; justify-content: space-between; margin: 0; }
     mat-dialog-content { height: calc(100% - 300px); }
     img { filter: drop-shadow(4px 1px 1px #ccc) }
     .pokemon { justify-content: center }
@@ -65,7 +65,7 @@ export class PokemonViewComponent {
     const { pokemon, specie } = pokemonData;
     this.pokemon = pokemon;
     this.specie = specie;
-    sheetRef.afterDismissed().toPromise().then(() => {
+    sheetRef.afterDismissed().toPromise().then( () => {
       this.service.addRecentPokemon(pokemon, specie);
     })
   }

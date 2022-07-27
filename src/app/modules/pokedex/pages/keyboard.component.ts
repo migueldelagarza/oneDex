@@ -21,7 +21,7 @@ import { DetailPokemonService } from '@services/detail-pokemon.service';
         </button>
       </div>
       <div *ngIf="isValidDigit" id="searchButton">
-        <button type="button" mat-fab color="accent" (click)="searchPokemon()">
+        <button type="button" class="mat-elevation-z0" mat-fab color="accent" (click)="searchPokemon()">
           <mat-icon>search</mat-icon>
         </button>
         <small class="mat-small">buscar</small>
@@ -47,6 +47,7 @@ import { DetailPokemonService } from '@services/detail-pokemon.service';
       width: 30%;
     }
     #searchButton {
+      align-items: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
