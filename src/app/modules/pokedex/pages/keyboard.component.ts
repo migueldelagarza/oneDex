@@ -20,9 +20,12 @@ import { DetailPokemonService } from '@services/detail-pokemon.service';
           <mat-icon>backspace</mat-icon>
         </button>
       </div>
-      <button id="searchButton" type="button" mat-flat-button color="accent" (click)="searchPokemon()" *ngIf="isValidDigit">
-        VER DETALLE
-      </button>
+      <div *ngIf="isValidDigit" id="searchButton">
+        <button type="button" mat-fab color="accent" (click)="searchPokemon()">
+          <mat-icon>search</mat-icon>
+        </button>
+        <small class="mat-small">buscar</small>
+      </div>
     </div>
   `,
   styles: [`
@@ -44,8 +47,10 @@ import { DetailPokemonService } from '@services/detail-pokemon.service';
       width: 30%;
     }
     #searchButton {
-      display: block;
-      padding: 0 36px
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 16px;
     }
   `]
 })
