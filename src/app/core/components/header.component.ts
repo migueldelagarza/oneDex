@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'one-header',
@@ -13,6 +14,7 @@ import { MatDrawer } from '@angular/material/sidenav';
         <span class="mat-small"></span>
       </button>
     </mat-toolbar>
+    <mat-progress-bar class="mat-elevation-z1" color="accent" [mode]="progressStatus" value="100"></mat-progress-bar>
   `,
   styles: [`
     mat-toolbar {
@@ -24,8 +26,12 @@ export class HeaderComponent {
   @Input() drawer: MatDrawer;
   title: string;
 
-  constructor() {
+  constructor(private Loading_: LoadingService) {
     this.title = 'OneDex';
+  }
+
+  get progressStatus(): string {
+    return this.Loading_.isLoading ? 'indeterminate' : 'determinate'
   }
 
 }

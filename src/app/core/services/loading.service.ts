@@ -7,8 +7,11 @@ import { LoadingComponent } from '@components/loading.component';
 })
 export class LoadingService {
   idLoading: string;
+  isLoading: boolean;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) {
+    this.isLoading = false;
+  }
 
   public show(): void {
     this.idLoading = this.dialog.open(LoadingComponent).id;

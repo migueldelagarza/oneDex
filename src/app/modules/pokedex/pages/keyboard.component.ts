@@ -26,18 +26,22 @@ import { DetailPokemonService } from '@services/detail-pokemon.service';
     </div>
   `,
   styles: [`
+    .mat-display-2 {
+      padding-top: 16px;
+      margin-bottom: 32px;
+    }
     .keyboard {
       display: flex;
       flex-wrap: wrap;
-      height: 250px;
+      height: 275px;
       justify-content: space-between;
       margin: auto;
       max-width: 300px;
     }
     .keyboard button {
-      height: 20%;
-      width: 30%;
       font-size: 20px;
+      height: 25%;
+      width: 30%;
     }
     #searchButton {
       display: block;

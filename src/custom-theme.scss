@@ -36,7 +36,7 @@ $oneDex-theme: mat-light-theme((
 @import '~@angular/material/theming';
 @include mat-core();
 $oneDex-primary: mat-palette($mat-red);
-$oneDex-accent: mat-palette($mat-blue, A200, A100, A400);
+$oneDex-accent: mat-palette($mat-indigo, A200, A100, A400);
 $oneDex-warn: mat-palette($mat-red);
 
 $oneDex-theme: mat-light-theme($oneDex-primary, $oneDex-accent, $oneDex-warn);
@@ -55,8 +55,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: mat-color($oneDex-warn)
 }
 ::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: rgba($color: white, $alpha: 0.1); 

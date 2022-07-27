@@ -8,19 +8,25 @@ import { PokeAPIService } from '@services/poke-api.service';
   <mat-card>
     <h3 matSubheader>Selecciona un pokemon</h3>
     <mat-list (scroll)="scrollList($event.srcElement)">
-      <mat-list-item *ngFor="let pokemon of pokemonList; let idx = index" matRipple (click)="openPokemon(idx + 1)">
-        <img mat-list-icon src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{idx + 1}}.png" [alt]="pokemon.name">
-        <h4 matLine>#{{idx + 1}}</h4>
-        <mat-hint matLine>{{ pokemon.name | titlecase }}</mat-hint>
-        <mat-icon>keyboard_arrow_right</mat-icon>
+      <mat-list-item *ngFor="let pokemon of pokemonList" matRipple (click)="openPokemon(pokemon.id)">
+        <img mat-list-icon src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" [alt]="pokemon.name">
+        <h4 matLine>#{{pokemon.id}}</h4>
+        <mat-hint matLine>{{ pokemon.name | uppercase }}</mat-hint>
         <mat-divider mat-line></mat-divider>
+        <span mat-line></span>
+        <mat-icon>keyboard_arrow_right</mat-icon>
       </mat-list-item>
     </mat-list>
   </mat-card>
   `,
   styles: [`
     mat-card {
+      margin: auto;
+      max-width: 500px;
       width: calc(100% - 32px);
+    }
+    h3 {
+      margin: 0;
     }
     mat-list {
       height: calc(100vh - 316px);
@@ -33,6 +39,9 @@ import { PokeAPIService } from '@services/poke-api.service';
       scroll-snap-align: start;
     }
     .mat-list-icon {
+      background: #7986cb;
+      box-shadow: 0 2px 3px 1px rgba(0,0,0,0.3);
+      border: solid 1px #eee;
       height: 96px !important;
       width: 96px !important;
     }
@@ -60,7 +69,7 @@ export class PokemonListComponent implements OnInit {
   public scrollList($event: any): void {
     const { scrollTop, scrollHeight, offsetHeight } = $event;
     if (Math.ceil(offsetHeight + scrollTop) == scrollHeight) {
-      this.pokeApi.loadPokemon(this.lastPokemon + 50).then( () => {
+      this.pokeApi.loadPokemon(this.lastPokemon + 50).then(() => {
         this.lastPokemon += 50;
       })
     }

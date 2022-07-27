@@ -14,7 +14,6 @@ export class RecentsService {
     const index = this.recents.findIndex( data => {
       return data.pokemon.id === pokemon.id;
     });
-    console.log(index)
     if (index >= 0) {
       this.recents.splice(index, 1);
     }
