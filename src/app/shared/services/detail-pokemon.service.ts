@@ -15,6 +15,7 @@ export class DetailPokemonService {
   ) { }
 
   public openPokemonDetail(index: number | string): void {
+    if (typeof index == 'string') { index = this.formatToSearch(index); }
     index = index < 1 ? 1 : index;
     index = index > 898 ? 898 : index;
     this.getDataPokemon(index).subscribe(pokemon => {
@@ -32,5 +33,9 @@ export class DetailPokemonService {
 
   private getDataSpecie(index: number | string): Observable<any> {
     return this.pokeAPI.getSpecieByIndex(index);
+  }
+
+  private formatToSearch(name: string): string {
+    return name.toLocaleLowerCase().replace(' ','');
   }
 }
