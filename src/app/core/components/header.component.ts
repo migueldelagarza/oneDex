@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { DetailPokemonService } from '@services/detail-pokemon.service';
 import { LoadingService } from '../services/loading.service';
 
 @Component({
@@ -9,10 +10,10 @@ import { LoadingService } from '../services/loading.service';
       <span>
         {{ title }}
       </span>
-      <button mat-icon-button class="mat-elevation-z0">
-        <mat-icon>more_vert</mat-icon>
-        <span class="mat-small"></span>
-      </button>
+      <mat-form-field appearance="outline">
+        <input type="search" #SearchInput matInput placeholder="Buscar" (keyup.enter)="detailService.openPokemonDetail(SearchInput.value)">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
     </mat-toolbar>
     <mat-progress-bar class="mat-elevation-z1" color="accent" [mode]="progressStatus" value="100"></mat-progress-bar>
   `,
@@ -26,7 +27,7 @@ export class HeaderComponent {
   @Input() drawer: MatDrawer;
   title: string;
 
-  constructor(private Loading_: LoadingService) {
+  constructor(private Loading_: LoadingService, public detailService: DetailPokemonService) {
     this.title = 'OneDex';
   }
 
