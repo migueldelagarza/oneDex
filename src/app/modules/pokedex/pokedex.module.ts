@@ -22,7 +22,7 @@ import { KeyboardComponent } from './pages/keyboard.component';
     StatsComponent,
     PokedexListComponent,
     RecentListComponent,
-    KeyboardComponent
+    KeyboardComponent,
   ],
   imports: [
     CommonModule,

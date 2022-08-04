@@ -1,8 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-import { catchError, retry } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { Injectable } from "@angular/core";
+import {
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpErrorResponse,
+} from "@angular/common/http";
+import { catchError, retry } from "rxjs/operators";
+import { throwError } from "rxjs";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -13,13 +18,13 @@ export class ErrorInterceptor implements HttpInterceptor {
       retry(2),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
-          this.router.navigateByUrl('/missigno');
+          this.router.navigateByUrl("/missigno");
         }
         if (error.status === 504) {
-          alert('Error en servidor. Intente más tarde')
+          alert("Error en servidor. Intente más tarde");
         }
         return throwError(error);
       })
-    )
+    );
   }
 }

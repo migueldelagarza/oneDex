@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import { Component, Input } from "@angular/core";
+import { MatDrawer } from "@angular/material/sidenav";
 
 @Component({
-  selector: 'one-drawer',
+  selector: "one-drawer",
   template: `
     <mat-toolbar color="primary">
       <button mat-button (click)="drawer.close()">
@@ -11,9 +11,7 @@ import { MatDrawer } from '@angular/material/sidenav';
       </button>
     </mat-toolbar>
   `,
-  styles: [`
-  `]
 })
 export class DrawerComponent {
-  @Input()drawer: MatDrawer;
+  @Input() drawer: MatDrawer;
 }

@@ -1,23 +1,13 @@
-import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LoadingComponent } from '@components/loading.component';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class LoadingService {
   idLoading: string;
   isLoading: boolean;
 
-  constructor(private dialog: MatDialog) {
+  constructor() {
     this.isLoading = false;
-  }
-
-  public show(): void {
-    this.idLoading = this.dialog.open(LoadingComponent).id;
-  }
-
-  public hide(): void {
-    this.dialog.closeAll();
   }
 }
