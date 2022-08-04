@@ -10,10 +10,7 @@ import { LoadingService } from '../services/loading.service';
       <span>
         {{ title }}
       </span>
-      <mat-form-field appearance="outline">
-        <input type="search" #SearchInput matInput placeholder="Buscar" (keyup.enter)="detailService.openPokemonDetail(SearchInput.value)">
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
+      <one-search></one-search>
     </mat-toolbar>
     <mat-progress-bar class="mat-elevation-z1" color="accent" [mode]="progressStatus" value="100"></mat-progress-bar>
   `,
