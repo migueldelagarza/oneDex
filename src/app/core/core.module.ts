@@ -12,6 +12,7 @@ import { FooterComponent } from "./components/footer.component";
 import { ErrorInterceptor } from "./interceptors/error.interceptor";
 import { MaterialModule } from "../shared/material/material.module";
 import { RouterModule } from "@angular/router";
+import { LoadingService } from "./services/loading.service";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { RouterModule } from "@angular/router";
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: LoadingService },
   ],
 })
 export class CoreModule {}

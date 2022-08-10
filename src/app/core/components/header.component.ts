@@ -31,10 +31,7 @@ export class HeaderComponent {
   @Input() drawer: MatDrawer;
   title: string;
 
-  constructor(
-    private Loading_: LoadingService,
-    public detailService: DetailPokemonService
-  ) {
+  constructor(private Loading_: LoadingService) {
     this.title = "OneDex";
   }
 
