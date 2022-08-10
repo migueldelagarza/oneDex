@@ -1,30 +1,46 @@
-import { Injectable } from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { PokeAPIService } from '@services/poke-api.service';
-import { Observable } from 'rxjs';
-import { PokemonViewComponent } from 'src/app/modules/pokedex/components/pokemon-view.component';
+import { Injectable } from "@angular/core";
+import { MatBottomSheet } from "@angular/material/bottom-sheet";
+import { PokeAPIService } from "@services/poke-api.service";
+import { Observable } from "rxjs";
+import { switchMap, tap } from "rxjs/operators";
+import { PokemonViewComponent } from "src/app/modules/pokedex/components/pokemon-view.component";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class DetailPokemonService {
-
+  pokemon: any;
   constructor(
     private dialog: MatBottomSheet,
     private pokeAPI: PokeAPIService
-  ) { }
+  ) {}
 
   public openPokemonDetail(index: number | string): void {
-    if (typeof index == 'string') { index = this.formatToSearch(index); }
-    index = index < 1 ? 1 : index;
-    index = index > 898 ? 898 : index;
-    this.getDataPokemon(index).subscribe(pokemon => {
-      this.getDataSpecie(index).subscribe(specie => {
-        this.dialog.open(PokemonViewComponent, {
-          data: { pokemon, specie }
-        })
+    if (this.isString(index)) {
+      index = this.formatToSearch(index);
+    } else {
+      index = this.validIndex(index);
+    }
+    this.getDataPokemon(index)
+      .pipe(
+        tap((pokemon) => (this.pokemon = pokemon)),
+        switchMap((pokemon) => this.getDataSpecie(pokemon.id))
+      )
+      .subscribe((specie) => {
+        this.openPokemonBottomsheet(this.pokemon, specie);
       });
-    });
+  }
+
+  private openPokemonBottomsheet(pokemon: any, specie: any): void {
+    this.dialog.open(PokemonViewComponent, { data: { pokemon, specie } });
+  }
+
+  private validIndex(index: any): number {
+    return index < 1 ? 1 : index;
+  }
+
+  private isString(val: any): boolean {
+    return typeof val == "string";
   }
 
   private getDataPokemon(index: number | string): Observable<any> {
@@ -35,7 +51,7 @@ export class DetailPokemonService {
     return this.pokeAPI.getSpecieByIndex(index);
   }
 
-  private formatToSearch(name: string): string {
-    return name.toLocaleLowerCase().replace(' ','');
+  private formatToSearch(name: any): string {
+    return name.toLocaleLowerCase().replace(" ", "");
   }
 }
