@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { SearchPokemonService } from "@services/search-pokemon.service";
 import { PageData } from "@constants/pages";
 import { PageContent } from "@models/page";
 
@@ -40,11 +39,7 @@ import { PageContent } from "@models/page";
 export class FooterComponent {
   links: PageContent[];
 
-  constructor(private search: SearchPokemonService) {
+  constructor() {
     this.links = Object.values(PageData);
-  }
-
-  public openSearch(): void {
-    this.search.openSearch();
   }
 }
