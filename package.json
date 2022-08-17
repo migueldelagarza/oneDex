@@ -23,6 +23,9 @@
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/pwa": "^14.1.2",
     "@angular/router": "^14.1.0",
+    "chart.js": "^3.9.1",
+    "chartjs": "^0.3.24",
+    "ng2-charts": "^4.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.4.0",
     "zone.js": "~0.11.4"

@@ -5,6 +5,7 @@ import { AlertingComponent } from './components/alerting.component';
 import { MaterialModule } from './material/material.module';
 import { TranslateEsPipe } from './pipes/translate-es.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoadingComponent,
     AlertingComponent,
     TranslateEsPipe,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
   ],
   entryComponents: []
 })
