@@ -1,3 +1,4 @@
+name: Deploy to firebase
 on:
   push:
     branches:
@@ -26,8 +27,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install and npm run build
         run: |
-          npm i -g firebase-tools
           npm i -f
           npm run build
-      - name: deploy firebase
-        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_AVISPONES }}'
+          channelId: live
+          projectId: avispones
