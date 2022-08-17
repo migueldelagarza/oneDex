@@ -7,7 +7,7 @@ import { Component } from "@angular/core";
       <mat-sidenav mode="over" #drawer>
         <one-drawer [drawer]="drawer"></one-drawer>
       </mat-sidenav>
-      <mat-sidenav-content>
+      <mat-sidenav-content id="sidenav">
         <one-header [drawer]="drawer"></one-header>
         <router-outlet></router-outlet>
         <one-footer></one-footer>
@@ -18,6 +18,11 @@ import { Component } from "@angular/core";
     `
       mat-sidenav-container {
         height: 100vh;
+      }
+      #sidenav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     `,
   ],

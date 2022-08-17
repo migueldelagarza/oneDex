@@ -7,7 +7,6 @@ import { PageContent } from '@models/page';
   selector: 'one-recent-list',
   template: `
     <section align="center">
-      <mat-hint>{{page.subtitle}}</mat-hint>
       <h1 class="mat-h1 text-primary">{{page.title}}</h1>
       <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
     <section>
