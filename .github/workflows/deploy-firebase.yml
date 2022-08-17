@@ -1,33 +1,33 @@
-on:
-  push:
-    branches:
-      - developement
-jobs:
-  build_app:
-    name: build app
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
+# on:
+#   push:
+#     branches:
+#       - developement
+# jobs:
+#   build_app:
+#     name: build app
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node-version: [16.x]
       
-    steps:
-      - uses: actions/checkout@v1
+#     steps:
+#       - uses: actions/checkout@v1
 
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm install and npm run build
-        run: |
-          npm i -g firebase-tools
-          npm i -f
-          npm run build:prod
-      - name: deploy firebase
-        run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
+#       - name: Cache node modules
+#         uses: actions/cache@v1
+#         with:
+#           path: ~/.npm
+#           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+#           restore-keys: |
+#             ${{ runner.os }}-node-
+#       - name: Node ${{ matrix.node-version }}
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#       - name: npm install and npm run build
+#         run: |
+#           npm i -g firebase-tools
+#           npm i -f
+#           npm run build:prod
+#       - name: deploy firebase
+#         run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
