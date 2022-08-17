@@ -7,16 +7,13 @@ import { LoadingService } from "../services/loading.service";
   selector: "one-header",
   template: `
     <mat-toolbar>
-      <span>
-        {{ title }}
-      </span>
-      <one-search></one-search>
+      <one-search #searchInput></one-search>
     </mat-toolbar>
     <mat-progress-bar
       class="mat-elevation-z1"
       color="accent"
       [mode]="progressStatus"
-      value="100"
+      value="0"
     ></mat-progress-bar>
   `,
   styles: [
