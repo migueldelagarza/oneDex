@@ -8,7 +8,6 @@ import { PageContent } from "@models/page";
     <footer
       mat-tab-nav-bar
       mat-align-tabs="center"
-      headerPosition="below"
       backgroundColor="primary"
     >
       <a
@@ -27,11 +26,6 @@ import { PageContent } from "@models/page";
   styles: [
     `
       footer {
-        background: #222;
-        color: #eee;
-        bottom: 0;
-        position: fixed;
-        width: 100%;
       }
     `,
   ],
