@@ -28,6 +28,6 @@ jobs:
         run: |
           npm i -g firebase-tools
           npm i -f
-          npm run build:prod
+          npm run build
       - name: deploy firebase
         run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
