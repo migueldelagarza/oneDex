@@ -9,7 +9,6 @@ import { PageContent } from '@models/page';
   template: `
   <section *ngIf="(pokemons$ | async) as pokemons">
     <div align="center">
-      <!-- <mat-hint>{{pokemons.length}} {{page.subtitle}}</mat-hint> -->
       <h1 class="mat-h1 text-primary">{{page.title}}</h1>
     </div>
     <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>

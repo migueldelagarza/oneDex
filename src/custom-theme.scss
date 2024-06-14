@@ -7,8 +7,11 @@ $oneDex-warn: mat-palette($mat-red);
 $oneDex-theme: mat-light-theme($oneDex-primary, $oneDex-accent, $oneDex-warn);
 @include angular-material-theme($oneDex-theme);
 
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, sans-serif; font-size: 16px;}
+body { margin: 0; font-family: 'Ubuntu', Roboto, sans-serif; font-size: 16px;}
 
 .text-primary {
   color: mat-color($oneDex-primary)

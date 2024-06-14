@@ -30,8 +30,7 @@ export class PokeAPIService {
   }
 
   public getPokemonByIndex(index: string): Observable<any> {
-    const indexNumber = parseInt(index);
-    return this._http.get<any>(UrlApi.API_URL + 'pokemon/' + indexNumber)
+    return this._http.get<any>(UrlApi.API_URL + 'pokemon/' + index)
   }
 
   public getSpecieByIndex(index: string): Observable<any> {

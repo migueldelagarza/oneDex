@@ -11,4 +11,11 @@ export class AppComponent {
   constructor() {
     this._pokeApi.loadPokemon(151);
   }
+
+  async showNotification() {
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      new Notification('Listo!')
+    }
+  }
 }

@@ -8,7 +8,7 @@ import { PokeAPIService } from '@services/poke-api.service';
   <mat-card>
     <h3 matSubheader>Selecciona un pokemon</h3>
     <mat-list (scroll)="scrollList($event.srcElement)">
-      <mat-list-item *ngFor="let pokemon of pokemonList" matRipple (click)="openPokemon(pokemon.id)">
+      <mat-list-item *ngFor="let pokemon of pokemonList" matRipple (click)="openPokemon(pokemon.name)">
         <img mat-list-icon [src]="pokemon.imageUrl" [alt]="pokemon.name">
         <h4 matLine>#{{pokemon.id}}</h4>
         <mat-hint matLine>{{ pokemon.name | uppercase }}</mat-hint>

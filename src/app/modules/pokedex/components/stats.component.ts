@@ -48,7 +48,6 @@ export class StatsComponent implements OnInit {
       "vida",
     ];
     const stats = this.stats.map((stat) => stat.base_stat);
-    console.log(stats);
     this.chartData = {
       labels: this.chartLabels,
       datasets: [

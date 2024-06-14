@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { MatBottomSheet } from "@angular/material/bottom-sheet";
 import { PokeAPIService } from "@services/poke-api.service";
-import { Observable } from "rxjs";
+import { Observable, firstValueFrom } from "rxjs";
 import { switchMap, tap } from "rxjs/operators";
 import { PokemonViewComponent } from "src/app/modules/pokedex/components/pokemon-view.component";
 
@@ -10,21 +10,16 @@ import { PokemonViewComponent } from "src/app/modules/pokedex/components/pokemon
 })
 export class DetailPokemonService {
   pokemon: any;
-  constructor(
-    private dialog: MatBottomSheet,
-    private pokeAPI: PokeAPIService
-  ) {}
+  private dialog = inject(MatBottomSheet);
+  private pokeAPI = inject(PokeAPIService);
 
   public openPokemonDetail(index: string): void {
-    if (this.isString(index)) {
-      index = this.formatToSearch(index);
-    }
-    this.getDataPokemon(index)
+    firstValueFrom(this.getDataPokemon(index)
       .pipe(
         tap((pokemon) => (this.pokemon = pokemon)),
         switchMap((pokemon) => this.getDataSpecie(pokemon.id))
-      )
-      .subscribe((specie) => {
+      ))
+      .then((specie) => {
         this.openPokemonBottomsheet(this.pokemon, specie);
       });
   }
@@ -33,19 +28,11 @@ export class DetailPokemonService {
     this.dialog.open(PokemonViewComponent, { data: { pokemon, specie } });
   }
 
-  private isString(val: any): boolean {
-    return typeof val == "string";
-  }
-
   private getDataPokemon(index: string): Observable<any> {
     return this.pokeAPI.getPokemonByIndex(index);
   }
 
   private getDataSpecie(index: string): Observable<any> {
     return this.pokeAPI.getSpecieByIndex(index);
-  }
-
-  private formatToSearch(name: any): string {
-    return name.toLocaleLowerCase().replace(" ", "");
   }
 }

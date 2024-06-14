@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
 import { DetailPokemonService } from "@services/detail-pokemon.service";
 
 @Component({
@@ -9,9 +10,8 @@ import { DetailPokemonService } from "@services/detail-pokemon.service";
         #SearchInput
         id="searchInput"
         type="search"
-        placeholder="Buscar"
-        [value]="pokemonName"
-        (change)="updateName(SearchInput.value)"
+        placeholder="Buscar por nombre o #"
+        [formControl]="pokemonControl"
         (keyup.enter)="search()"
       />
       <mat-icon (click)="search()">search</mat-icon>
@@ -41,28 +41,11 @@ import { DetailPokemonService } from "@services/detail-pokemon.service";
   ],
 })
 export class SearchComponent {
-  private pokemonName$: string;
-
-  constructor(private pokemon_: DetailPokemonService) {
-    this.pokemonName$ = "";
-  }
-
-  get pokemonName(): string {
-    return this.pokemonName$;
-  }
-
-  set pokemonName(name: string) {
-    name.replace(" ", "");
-    if (name !== "") {
-      this.pokemonName$ = name;
-    }
-  }
-
-  public updateName(name: string): void {
-    this.pokemonName = name;
-  }
+  pokemonControl = new FormControl('', Validators.required);
+  private _detail = inject(DetailPokemonService);
 
   public search(): void {
-    this.pokemon_.openPokemonDetail(this.pokemonName);
+    if (this.pokemonControl.invalid) return;
+    this._detail.openPokemonDetail(this.pokemonControl.value.trim());
   }
 }
