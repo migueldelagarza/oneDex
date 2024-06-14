@@ -12,6 +12,7 @@ export class RecentsService {
   }
 
   public addRecentPokemon(pokemon: any, specie: any) {
+    console.log(pokemon);
     const index = this.recents.findIndex((data) => {
       return data.pokemon.id === pokemon.id;
     });

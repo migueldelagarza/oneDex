@@ -9,7 +9,7 @@ import { PokeAPIService } from '@services/poke-api.service';
     <h3 matSubheader>Selecciona un pokemon</h3>
     <mat-list (scroll)="scrollList($event.srcElement)">
       <mat-list-item *ngFor="let pokemon of pokemonList" matRipple (click)="openPokemon(pokemon.id)">
-        <img mat-list-icon src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" [alt]="pokemon.name">
+        <img mat-list-icon [src]="pokemon.imageUrl" [alt]="pokemon.name">
         <h4 matLine>#{{pokemon.id}}</h4>
         <mat-hint matLine>{{ pokemon.name | uppercase }}</mat-hint>
         <mat-divider mat-line></mat-divider>
@@ -37,6 +37,10 @@ import { PokeAPIService } from '@services/poke-api.service';
     }
     mat-list-item {
       scroll-snap-align: start;
+      :hover {
+        background-color: #f5f5f5;
+        cursor: pointer
+      }
     }
     .mat-list-icon {
       background: #7986cb;
@@ -47,21 +51,15 @@ import { PokeAPIService } from '@services/poke-api.service';
     }
   `]
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent {
   @Input() pokemonList: any[];
-  lastPokemon: number;
 
   constructor(
     private detail: DetailPokemonService,
     private pokeApi: PokeAPIService) {
-    this.lastPokemon = 50;
   }
 
-  ngOnInit(): void {
-  }
-
-
-  public openPokemon(pokemonIndex: number): void {
+  public openPokemon(pokemonIndex: string): void {
     this.detail.openPokemonDetail(pokemonIndex);
   }
 
@@ -69,9 +67,7 @@ export class PokemonListComponent implements OnInit {
   public scrollList($event: any): void {
     const { scrollTop, scrollHeight, offsetHeight } = $event;
     if (Math.ceil(offsetHeight + scrollTop) == scrollHeight) {
-      this.pokeApi.loadPokemon(this.lastPokemon + 50).then(() => {
-        this.lastPokemon += 50;
-      })
+      this.pokeApi.loadPokemon(50)
     }
   }
 }

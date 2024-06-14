@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageData } from '@constants/pages';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { PokeAPIService } from '@services/poke-api.service';
 import { PageContent } from '@models/page';
 
@@ -19,13 +19,21 @@ import { PageContent } from '@models/page';
 export class PokedexListComponent implements OnInit {
   page: PageContent;
   pokemons$: Observable<any>;
-  
+
   constructor(private pokeAPI: PokeAPIService) {
-    this.pokemons$ = this.pokeAPI.pokemons;
+    this.pokemons$ = this.pokeAPI.pokemonList
+      .pipe(map((pokemonList) => {
+        return pokemonList.map( (pokemon, idx) => {
+          let idString = (idx + 1).toString();
+          while (idString.length < 3) idString = '0' + idString;
+          const imageUrl = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + idString + '.png'
+          return { ...pokemon, id: idString, imageUrl }
+        })
+      })
+    );
   }
-  
+
   ngOnInit(): void {
-    this.pokeAPI.loadPokemon(50);
     this.page = PageData.POKEDEX_PAGE;
   }
 }

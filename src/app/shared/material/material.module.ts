@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatCardModule } from '@angular/material/card';
@@ -25,6 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 const modules: any[] = [
+  MatAutocompleteModule,
   MatButtonModule,
   MatBottomSheetModule,
   MatCardModule,

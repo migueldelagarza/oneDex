@@ -7,9 +7,7 @@ import { DetailPokemonService } from "@services/detail-pokemon.service";
     <div align="center">
       <img
         id="searchPhoto"
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
-          pokemonId
-        }}.png"
+        [src]="imageUrl"
         alt="foto de pokemon"
       />
       <p class="mat-display-2" align="center">#{{ pokemonId }}</p>
@@ -93,6 +91,12 @@ export class KeyboardComponent {
   pokemonId: string;
   keys: number[];
 
+  get imageUrl(): string {
+    let idString = this.pokemonId;
+    while (idString.length < 3) idString = '0' + idString; 
+    return 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + idString + '.png';
+  }
+
   constructor(private detail: DetailPokemonService) {
     this.pokemonId = "0";
     this.keys = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -108,7 +112,7 @@ export class KeyboardComponent {
     } else {
       this.pokemonId += digit;
     }
-    if (parseInt(this.pokemonId) > 898) {
+    if (parseInt(this.pokemonId) > 1024) {
       this.resetId();
     }
   }
@@ -122,7 +126,7 @@ export class KeyboardComponent {
   }
 
   public searchPokemon(): void {
-    const index = parseInt(this.pokemonId);
+    const index = this.pokemonId;
     this.detail.openPokemonDetail(index);
   }
 }

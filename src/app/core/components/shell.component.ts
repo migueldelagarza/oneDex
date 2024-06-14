@@ -10,7 +10,7 @@ import { Component } from "@angular/core";
       <mat-sidenav-content id="sidenav">
         <one-header [drawer]="drawer"></one-header>
         <router-outlet></router-outlet>
-        <one-footer></one-footer>
+        <!-- <one-footer></one-footer> -->
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,

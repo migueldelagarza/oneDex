@@ -15,11 +15,9 @@ export class DetailPokemonService {
     private pokeAPI: PokeAPIService
   ) {}
 
-  public openPokemonDetail(index: number | string): void {
+  public openPokemonDetail(index: string): void {
     if (this.isString(index)) {
       index = this.formatToSearch(index);
-    } else {
-      index = this.validIndex(index);
     }
     this.getDataPokemon(index)
       .pipe(
@@ -35,19 +33,15 @@ export class DetailPokemonService {
     this.dialog.open(PokemonViewComponent, { data: { pokemon, specie } });
   }
 
-  private validIndex(index: any): number {
-    return index < 1 ? 1 : index;
-  }
-
   private isString(val: any): boolean {
     return typeof val == "string";
   }
 
-  private getDataPokemon(index: number | string): Observable<any> {
+  private getDataPokemon(index: string): Observable<any> {
     return this.pokeAPI.getPokemonByIndex(index);
   }
 
-  private getDataSpecie(index: number | string): Observable<any> {
+  private getDataSpecie(index: string): Observable<any> {
     return this.pokeAPI.getSpecieByIndex(index);
   }
 

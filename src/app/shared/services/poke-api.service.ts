@@ -1,55 +1,41 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 import { UrlApi } from '@constants/urls';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 interface PokemonReference {
   name: string;
   url: string;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class PokeAPIService {
-  private pokemons$: Subject<PokemonReference[]>;
+  private _http = inject(HttpClient);
+  private _pokemonList$ = new BehaviorSubject<PokemonReference[]>([]);
+  private _offsetPokemon = 0;
 
-  constructor(private http: HttpClient) {
-    this.pokemons$ = new Subject();
-  }
+  pokemonList = this._pokemonList$.asObservable();
 
-  get pokemons(): Observable<PokemonReference[]> {
-    return this.pokemons$.asObservable();
-  }
-
-  loadPokemon(indexMax: number): Promise<any> {
+  loadPokemon(indexMax: number): void {
     indexMax = indexMax < 899 ? indexMax : 898;
-    return this.http.get<PokemonReference[]>(UrlApi.API_URL + 'pokemon?limit=' + indexMax)
-    // return this.http.get<PokemonReference[]>(UrlApi.API_URL + 'pokemon?offset=' + indexMax + 'limit=50')
+    firstValueFrom(this._http.get<PokemonReference[]>(UrlApi.API_URL + 'pokemon?limit=' + indexMax + '&offset=' + this._offsetPokemon)
       .pipe(map((response: any) => {
-        return response.results.map((pokemon, id) => {
-          return { ...pokemon, id: id + 1 }
-        })
-      }))
-      .pipe(tap(response => {
-        // const updateValue = [...this.pokemons$.value, response];
-        this.pokemons$.next(response)
-        //this.addPokemon(response)
-      })).toPromise();
+        return response.results
+      }))).then(pokemon => {
+        const currentValue = this._pokemonList$.value;
+        this._pokemonList$.next([...currentValue, ...pokemon]);
+        this._offsetPokemon = pokemon.length;
+      })
   }
 
-  public getPokemonByIndex(index: number | string): Observable<any> {
-    return this.http.get<any>(UrlApi.API_URL + 'pokemon/' + index)
+  public getPokemonByIndex(index: string): Observable<any> {
+    const indexNumber = parseInt(index);
+    return this._http.get<any>(UrlApi.API_URL + 'pokemon/' + indexNumber)
   }
 
-  public getSpecieByIndex(index: number | string): Observable<any> {
-    return this.http.get<any>(UrlApi.API_URL + 'pokemon-species/' + index)
-  }
-
-  private addPokemon(pokemon: PokemonReference[]) {
-    this.pokemons.subscribe( (data: PokemonReference[]) => {
-      this.pokemons$.next(pokemon);
-    })
+  public getSpecieByIndex(index: string): Observable<any> {
+    const indexNumber = parseInt(index);
+    return this._http.get<any>(UrlApi.API_URL + 'pokemon-species/' + indexNumber)
   }
 }

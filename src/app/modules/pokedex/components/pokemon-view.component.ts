@@ -23,7 +23,7 @@ import { RecentsService } from "@services/recents.service";
     </h1>
     <div class="align-items-center pokemon">
       <div>
-        <img [src]="pokemon.sprites.front_default" />
+        <img [src]="pokemon.imageUrl" [alt]="pokemon.name" />
       </div>
       <mat-list>
         <mat-list-item>
@@ -46,10 +46,10 @@ import { RecentsService } from "@services/recents.service";
       <p>
         {{ (specie.flavor_text_entries | translateEs)[0].flavor_text }}
       </p>
-      <one-stats
+      <!-- <one-stats
         [stats]="pokemon.stats"
         [color]="specie.color.name"
-      ></one-stats>
+      ></one-stats> -->
     </mat-dialog-content>
   `,
   styles: [
@@ -84,6 +84,8 @@ export class PokemonViewComponent {
   ) {
     this.title = "Detalle de pokemon";
     const { pokemon, specie } = pokemonData;
+    pokemon.imageUrl = this._getImageUrl(pokemon.id);
+    pokemon.id = this._getIdString(pokemon.id);
     this.pokemon = pokemon;
     this.specie = specie;
     sheetRef
@@ -96,5 +98,16 @@ export class PokemonViewComponent {
 
   public dismiss(): void {
     this.sheetRef.dismiss();
+  }
+
+  private _getImageUrl(index: number): string {
+    const idxString = this._getIdString(index);
+    return 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + idxString + '.png'
+  }
+
+  private _getIdString(index: number): string {
+    let idxString = index.toString()
+    while (idxString.length < 3) idxString = '0' + idxString;
+    return idxString;
   }
 }

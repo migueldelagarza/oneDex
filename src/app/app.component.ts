@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
-import { DetailPokemonService } from '@services/detail-pokemon.service';
+import { Component, inject } from '@angular/core';
+import { PokeAPIService } from '@services/poke-api.service';
 
 @Component({
   selector: 'one-root',
   template: '<one-shell></one-shell>'
 })
 export class AppComponent {
+  private _pokeApi = inject(PokeAPIService);
 
-  constructor(private detailPokemon_: DetailPokemonService){
+  constructor() {
+    this._pokeApi.loadPokemon(151);
   }
 }
