@@ -9,51 +9,7 @@ import { environment } from "src/environments/environment";
 
 @Component({
   selector: "one-pokemon-view",
-  template: `
-    <h1 mat-dialog-title>
-      <div align="start">
-        <mat-hint class="mat-small">{{
-          (specie.genera | translateEs)[0].genus
-        }}</mat-hint>
-        <h2 class="mat-h1 text-accent">
-          #{{ pokemon.id }} {{ pokemon.name | titlecase }}
-        </h2>
-      </div>
-      <button mat-icon-button (click)="dismiss()">
-        <mat-icon>close</mat-icon>
-      </button>
-    </h1>
-    <div class="align-items-center pokemon">
-      <div>
-        <img [src]="pokemon.imageUrl" [alt]="pokemon.name" />
-      </div>
-      <mat-list>
-        <mat-list-item>
-          <h4 matLine>
-            Peso:
-            <mat-hint>{{ pokemon.weight / 10 }}kg</mat-hint>
-          </h4>
-        </mat-list-item>
-        <mat-list-item>
-          <h4>
-            Altura:
-            <mat-hint>{{ pokemon.height / 10 }}m</mat-hint>
-          </h4>
-        </mat-list-item>
-      </mat-list>
-    </div>
-    <mat-divider></mat-divider>
-    <mat-dialog-content>
-      <h2 class="mat-h2 text-accent">Descripción</h2>
-      <p>
-        {{ (specie.flavor_text_entries | translateEs)[0].flavor_text }}
-      </p>
-      <!-- <one-stats
-        [stats]="pokemon.stats"
-        [color]="specie.color.name"
-      ></one-stats> -->
-    </mat-dialog-content>
-  `,
+  templateUrl: './pokemon-view.component.html',
   styles: [
     `
       .mat-dialog-title {
@@ -78,6 +34,7 @@ export class PokemonViewComponent {
   title: string;
   pokemon: any;
   specie: any;
+  moves: any;
 
   constructor(
     public sheetRef: MatBottomSheetRef<PokemonViewComponent>,
@@ -90,6 +47,7 @@ export class PokemonViewComponent {
     pokemon.id = this._getIdString(pokemon.id);
     this.pokemon = pokemon;
     this.specie = specie;
+    this.moves = pokemon.moves.map(({move}) => move)
     firstValueFrom(sheetRef.afterDismissed()).then(() => {
       this.service.addRecentPokemon(pokemon, specie);
     });

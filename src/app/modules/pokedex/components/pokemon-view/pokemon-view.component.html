@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>
+  <div align="start">
+    <mat-hint class="mat-small">{{
+      (specie.genera | translateEs)[0].genus
+      }}</mat-hint>
+    <h2 class="mat-h1 text-accent">
+      #{{ pokemon.id }} {{ pokemon.name | titlecase }}
+    </h2>
+  </div>
+  <button mat-icon-button (click)="dismiss()">
+    <mat-icon>close</mat-icon>
+  </button>
+</h1>
+<mat-dialog-content>
+  <mat-tab-group>
+    <mat-tab label="Datos">
+      <div class="align-items-center pokemon">
+        <div>
+          <img [src]="pokemon.imageUrl" [alt]="pokemon.name" />
+        </div>
+        <mat-list>
+          <mat-list-item>
+            <h4 matLine>
+              Peso:
+              <mat-hint>{{ pokemon.weight / 10 }}kg</mat-hint>
+            </h4>
+          </mat-list-item>
+          <mat-list-item>
+            <h4>
+              Altura:
+              <mat-hint>{{ pokemon.height / 10 }}m</mat-hint>
+            </h4>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <mat-divider></mat-divider>
+      <h2 class="mat-h2 text-accent">Descripción</h2>
+      <p>
+        {{ (specie.flavor_text_entries | translateEs)[0].flavor_text }}
+      </p>
+    </mat-tab>
+    <mat-tab label="Movimientos">
+      <!-- <one-movements [moves]="moves"></one-movements> -->
+    </mat-tab>
+    <mat-tab label="Third"> Content 3 </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>

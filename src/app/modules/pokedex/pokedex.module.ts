@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PokedexRoutingModule } from './pokedex-routing.module';
 import { PokemonListComponent } from './components/pokemon-list.component';
-import { PokemonViewComponent } from './components/pokemon-view.component';
+import { PokemonViewComponent } from './components/pokemon-view/pokemon-view.component';
 import { SearchPokemonComponent } from './components/search-pokemon.component';
 import { SearchFormComponent } from './components/search-form.component';
 import { StatsComponent } from './components/stats.component';
 import { PokedexListPage } from './pages/pokedex-list/pokedex-list.page';
 import { RecentListComponent } from './pages/recent-list.component';
+import { MovementsComponent } from './components/movements/movements.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { RecentListComponent } from './pages/recent-list.component';
     StatsComponent,
     PokedexListPage,
     RecentListComponent,
+    MovementsComponent,
   ],
   imports: [
     CommonModule,

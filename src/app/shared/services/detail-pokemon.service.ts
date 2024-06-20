@@ -3,7 +3,7 @@ import { MatBottomSheet } from "@angular/material/bottom-sheet";
 import { PokeAPIService } from "@services/poke-api.service";
 import { Observable, firstValueFrom } from "rxjs";
 import { switchMap, tap } from "rxjs/operators";
-import { PokemonViewComponent } from "src/app/modules/pokedex/components/pokemon-view.component";
+import { PokemonViewComponent } from "src/app/modules/pokedex/components/pokemon-view/pokemon-view.component";
 
 @Injectable({
   providedIn: "root",
