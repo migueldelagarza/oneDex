@@ -4,6 +4,8 @@ import {
   MAT_BOTTOM_SHEET_DATA,
 } from "@angular/material/bottom-sheet";
 import { RecentsService } from "@services/recents.service";
+import { firstValueFrom } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "one-pokemon-view",
@@ -88,12 +90,9 @@ export class PokemonViewComponent {
     pokemon.id = this._getIdString(pokemon.id);
     this.pokemon = pokemon;
     this.specie = specie;
-    sheetRef
-      .afterDismissed()
-      .toPromise()
-      .then(() => {
-        this.service.addRecentPokemon(pokemon, specie);
-      });
+    firstValueFrom(sheetRef.afterDismissed()).then(() => {
+      this.service.addRecentPokemon(pokemon, specie);
+    });
   }
 
   public dismiss(): void {
@@ -102,7 +101,7 @@ export class PokemonViewComponent {
 
   private _getImageUrl(index: number): string {
     const idxString = this._getIdString(index);
-    return 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + idxString + '.png'
+    return environment.urlImages + idxString + '.png'
   }
 
   private _getIdString(index: number): string {

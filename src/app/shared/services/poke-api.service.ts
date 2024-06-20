@@ -25,7 +25,7 @@ export class PokeAPIService {
       }))).then(pokemon => {
         const currentValue = this._pokemonList$.value;
         this._pokemonList$.next([...currentValue, ...pokemon]);
-        this._offsetPokemon = pokemon.length;
+        this._offsetPokemon = this._pokemonList$.value.length;
       })
   }
 

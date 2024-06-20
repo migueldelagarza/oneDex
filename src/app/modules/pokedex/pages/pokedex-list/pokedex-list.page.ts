@@ -3,19 +3,19 @@ import { PageData } from '@constants/pages';
 import { Observable, map } from 'rxjs';
 import { PokeAPIService } from '@services/poke-api.service';
 import { PageContent } from '@models/page';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'one-pokedex-list',
   template: `
   <section *ngIf="(pokemons$ | async) as pokemons">
-    <div align="center">
       <h1 class="mat-h1 text-primary">{{page.title}}</h1>
-    </div>
     <one-pokemon-list [pokemonList]="pokemons"></one-pokemon-list>
   </section>
-  `
+  `,
+  styleUrls: ['./pokedex-list.page.sass']
 })
-export class PokedexListComponent implements OnInit {
+export class PokedexListPage implements OnInit {
   page: PageContent;
   pokemons$: Observable<any>;
 
@@ -25,7 +25,7 @@ export class PokedexListComponent implements OnInit {
         return pokemonList.map( (pokemon, idx) => {
           let idString = (idx + 1).toString();
           while (idString.length < 3) idString = '0' + idString;
-          const imageUrl = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/' + idString + '.png'
+          const imageUrl = environment.urlImages + idString + '.png'
           return { ...pokemon, id: idString, imageUrl }
         })
       })

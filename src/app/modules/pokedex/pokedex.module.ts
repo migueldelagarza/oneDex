@@ -8,9 +8,8 @@ import { PokemonViewComponent } from './components/pokemon-view.component';
 import { SearchPokemonComponent } from './components/search-pokemon.component';
 import { SearchFormComponent } from './components/search-form.component';
 import { StatsComponent } from './components/stats.component';
-import { PokedexListComponent } from './pages/pokedex-list.component';
+import { PokedexListPage } from './pages/pokedex-list/pokedex-list.page';
 import { RecentListComponent } from './pages/recent-list.component';
-import { KeyboardComponent } from './pages/keyboard.component';
 
 
 @NgModule({
@@ -20,9 +19,8 @@ import { KeyboardComponent } from './pages/keyboard.component';
     SearchPokemonComponent,
     SearchFormComponent,
     StatsComponent,
-    PokedexListComponent,
+    PokedexListPage,
     RecentListComponent,
-    KeyboardComponent,
   ],
   imports: [
     CommonModule,

@@ -10,7 +10,6 @@ import { PageContent } from '@models/page';
         <mat-hint>{{page.subtitle}}</mat-hint>
         <h1 class="mat-h1 text-primary">{{page.title}}</h1>
       </div>
-      <one-keyboard></one-keyboard>
     </section>
   `,
   styles: [`
