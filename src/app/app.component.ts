@@ -10,6 +10,7 @@ export class AppComponent {
 
   constructor() {
     this._pokeApi.loadPokemon(151);
+    this._pokeApi.loadMoves();
   }
 
   async showNotification() {

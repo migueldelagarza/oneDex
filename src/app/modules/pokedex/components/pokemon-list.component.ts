@@ -37,10 +37,6 @@ import { PokeAPIService } from '@services/poke-api.service';
     }
     mat-list-item {
       scroll-snap-align: start;
-      :hover {
-        background-color: #f5f5f5;
-        cursor: pointer
-      }
     }
     .mat-list-icon {
       background: #7986cb;

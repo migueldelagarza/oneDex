@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlImages: 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/'
+  urlImages: 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/',
+  urlMoves: 'https://delagarzamelo2503.firebaseio.com/moves.json'
 };
 
 /*

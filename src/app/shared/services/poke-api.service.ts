@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom, Subject } from 'rxjs';
 import { UrlApi } from '@constants/urls';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 interface PokemonReference {
   name: string;
@@ -14,8 +15,10 @@ export class PokeAPIService {
   private _http = inject(HttpClient);
   private _pokemonList$ = new BehaviorSubject<PokemonReference[]>([]);
   private _offsetPokemon = 0;
+  private _moveList$ = new Subject();
 
   pokemonList = this._pokemonList$.asObservable();
+  moveList$ = this._moveList$.asObservable();
 
   loadPokemon(indexMax: number): void {
     indexMax = indexMax < 899 ? indexMax : 898;
@@ -27,6 +30,11 @@ export class PokeAPIService {
         this._pokemonList$.next([...currentValue, ...pokemon]);
         this._offsetPokemon = this._pokemonList$.value.length;
       })
+  }
+
+  loadMoves(): void {
+    firstValueFrom(this._http.get(environment.urlMoves))
+      .then( moves => this._moveList$.next(moves))
   }
 
   public getPokemonByIndex(index: string): Observable<any> {
