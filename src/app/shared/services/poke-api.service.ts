@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, firstValueFrom, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 import { UrlApi } from '@constants/urls';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -15,7 +15,7 @@ export class PokeAPIService {
   private _http = inject(HttpClient);
   private _pokemonList$ = new BehaviorSubject<PokemonReference[]>([]);
   private _offsetPokemon = 0;
-  private _moveList$ = new Subject();
+  private _moveList$ = new BehaviorSubject<any>([]);
 
   pokemonList = this._pokemonList$.asObservable();
   moveList$ = this._moveList$.asObservable();
